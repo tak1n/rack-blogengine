@@ -1,7 +1,7 @@
-require "rack/blogengine/version"
+require_relative "blogengine/version"
+require_relative 'blogengine/application_response'
 
-module Rack
-  module Blogengine
-    # Your code goes here...
-  end
-end
+require 'rack'
+
+
+run Rack::Blogengine::ApplicationResponse
