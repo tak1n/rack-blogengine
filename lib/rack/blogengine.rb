@@ -3,5 +3,9 @@ require_relative 'blogengine/application_response'
 
 require 'rack'
 
+module Rack
+  module Blogengine
+    
+  end
+end
 
-run Rack::Blogengine::ApplicationResponse
