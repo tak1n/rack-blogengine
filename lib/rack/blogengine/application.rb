@@ -1,7 +1,12 @@
 module Rack
   module Blogengine
-    class Application              
+    class Application
+      def initialize(app)
+        @app = app
+      end
+                   
 	  def call(env)
+
 	    request = Rack::Request.new(env)
 	    headers = { 'Content-Type' => 'text/html' }
 
