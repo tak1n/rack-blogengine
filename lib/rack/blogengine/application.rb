@@ -6,6 +6,7 @@ module Rack
 	    headers = { 'Content-Type' => 'text/html' }
 
 	    case request.path
+	    	#TODO map requests with available docs from docparser
 	    when '/'
 	      [200, headers, ["You're at the root url!"]]
 	    when '/foo'

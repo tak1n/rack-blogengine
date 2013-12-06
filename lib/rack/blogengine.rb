@@ -1,10 +1,9 @@
-require_relative "blogengine/version"
-require_relative 'blogengine/doc_parser'
-require_relative 'blogengine/application'
+require "rack/blogengine/version"
+require 'rack/blogengine/doc_parser'
+require 'rack/blogengine/application'
 
 module Rack
-  module Blogengine
-    
+  module Blogengine  
   end
 end
 

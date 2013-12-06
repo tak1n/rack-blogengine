@@ -1,5 +1,5 @@
 #!/usr/bin/env ruby
-require_relative '../lib/rack/blogengine'
+require 'rack/blogengine'
 require 'rack'   
 
 params = ARGV
@@ -13,7 +13,7 @@ params.each do |param|
 
 		Rack::Handler::WEBrick.run(
   			app,
-  			:Port => 9000
+  			:Port => 8080
 		)
 	else
 		puts "Use rake-blogengine run!"
