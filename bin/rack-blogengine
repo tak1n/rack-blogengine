@@ -8,7 +8,7 @@ params.each do |param|
 	if param == "run"
 		#To stuff here
 		app = Rack::Builder.new do 
-			run Rack::Blogengine::Application.new 
+			run Rack::Blogengine::Application.new(ENV) 
 		end.to_app
 
 		Rack::Handler::WEBrick.run(
