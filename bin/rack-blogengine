@@ -7,13 +7,15 @@ params = ARGV
 params.each do |param|
 	if param == "run"
 		#To stuff here
+		doc = {:path => "/foo", :html => "<h1>hi</h1>"}
+		
 		app = Rack::Builder.new do 
-			run Rack::Blogengine::Application.new(ENV) 
+			run Rack::Blogengine::Application.new(doc) 
 		end.to_app
 
 		Rack::Handler::WEBrick.run(
   			app,
-  			:Port => 8080
+  			:Port => 9200
 		)
 	else
 		puts "Use rake-blogengine run!"
