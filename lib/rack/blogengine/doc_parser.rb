@@ -3,10 +3,10 @@ module Rack
 		class DocParser
 			# TODO Write Docparser
 			# return 
-			# {
-			#   path: "foo",
+			# [{
+			#  	path: "foo",
 			#   html:  HTML
-			# }
+			# }]
 			#
 			# HTML contains Content, Style, JS etc...
 		end
