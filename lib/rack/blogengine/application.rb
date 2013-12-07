@@ -1,8 +1,9 @@
 module Rack
   module Blogengine
     class Application
-      def initialize(app)
-        @app = app
+      def initialize(doc)
+        @doc_html = doc[:html]
+        @doc_path = doc[:path]
       end
                    
 	  def call(env)
@@ -10,15 +11,23 @@ module Rack
 	    request = Rack::Request.new(env)
 	    headers = { 'Content-Type' => 'text/html' }
 
-	    case request.path
-	    	#TODO map requests with available docs from docparser
-	    when '/'
-	      [200, headers, ["You're at the root url!"]]
-	    when '/foo'
-	      [200, headers, ["You're at /foo!"]]
+	    #request.path to :path mapping
+	    #docdummy.each do |doc|
+	   		#if doc["path"] == request.path
+	   			#[200, headers, [doc["html"]] ]
+	   		#end
+	   	#end	
+
+	   	#if @found != true
+	   	#	[404, headers, ["Uh oh, path not found!"]]
+	   	#end
+	   	#
+	   	case request.path
+	    when @doc_path
+	      [200, headers, [@doc_html] ]
 	    else
 	      [404, headers, ["Uh oh, path not found!"]]
-	    end
+	   	end
   	   end                  
     end
   end
