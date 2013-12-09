@@ -2,18 +2,27 @@
 require 'rack/blogengine'
 require 'rack'   
 
-params = ARGV
 
-params.each do |param|
-	if param == "run"
+	command = ARGV[0]
+
+	if ARGV[1]
+		target = ARGV[1]
+	else
+		target = "";
+	end
+
+	if command == "run"
 		#To stuff here
-
-		Rack::Handler::WEBrick.run(
-  			Rack::Blogengine::Application.new,
-  			:Port => 9200
-		)
+		unless target.empty? 
+			Rack::Handler::WEBrick.run(
+	  			Rack::Blogengine::Application.new(target),
+	  			:Port => 9200
+			)
+		else 
+			puts "Specify a targetfolder!"
+		end
 	else
 		puts "Use rake-blogengine run!"
 	end
-end
+
  
