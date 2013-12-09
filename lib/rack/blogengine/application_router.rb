@@ -1,15 +1,16 @@
 module Rack
   module Blogengine
     class ApplicationRouter 
-    	def self.map_route(env)
+    	def self.map_route(env, target)
     		status = 200
     		header = {"Content-Type" => "text/html"}
     		path = env["PATH_INFO"]
 
     		#TODO: Replace docdummy with parsed docs from docparser
-    		docdummy = [{ path: "/foo", html: "<h1>FooHi</h1>"}]
+    		#docdummy = [{ path: "/foo", html: "<h1>FooHi</h1>"}]
+    		documents = DocParser.parseInDocuments(target)
 
-    		docdummy.each do |doc|
+    		documents.each do |doc|
     			if doc[:path] == path
 
     				route_response = {
