@@ -1,6 +1,6 @@
 # Rack::Blogengine
 
-TODO: Write a gem description
+Rack Middleware to serve a simple blog
 
 ## Installation
 
@@ -18,7 +18,15 @@ Or install it yourself as:
 
 ## Usage
 
-TODO: Write usage instructions here
+Create a targetfolder where your Styling & Content is placed.
+
+The Structure must be:
+
+-Targetfolder
+--layout
+---style.css
+---layout.html
+--test.content
 
 ## Contributing
 
