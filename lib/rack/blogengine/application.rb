@@ -7,7 +7,7 @@ module Rack
 			if route  
 				return route["response"] 
 			else 
-				return [404, {"Content-Type" => "text/html"}, ["Page not found"]] 
+				return [404, {"Content-Type" => "text/html; charset=UTF-8"}, ["Page not found"]] 
 			end 
 		end                
     end

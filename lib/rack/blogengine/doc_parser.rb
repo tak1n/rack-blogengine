@@ -55,7 +55,7 @@ module Rack
 
   					if contentblock.include? "[content]:"
   						contentblock["[content]:"] = ""
-  						@content = contentblock.gsub(/\s+/, "")
+  						@content = contentblock
   					end
   				end
 			end
