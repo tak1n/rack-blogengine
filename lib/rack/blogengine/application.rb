@@ -1,12 +1,9 @@
 module Rack
   module Blogengine
     class Application
-    	def initialize(target)
-    		@targetfolder = target
-    	end
-
-		def call(env) 
-			route = ApplicationRouter.map_route(env, @targetfolder) 
+		def self.call(env)
+			# Router for map docs to routes
+			route = ApplicationRouter.map_route(env, $targetfolder) 
 			if route  
 				return route["response"] 
 			else 
