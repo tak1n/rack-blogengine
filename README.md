@@ -24,7 +24,7 @@ Create a targetfolder where your Styling & Content is placed.
 
 `targetfolder/layout` - save your layout.html and style.css in this folder
 
-`targetfolder/images` - your images will be served from this folder (http://urltoapp/images)
+`targetfolder/images` - your images will be served from this folder (http://pathtoapp.tld/images)
 
 `targetfolder/test.content` - your available blog entries matches to the .content files, each .content file is a blog entry
 
@@ -46,7 +46,20 @@ Example:
 	</body>
 </html>
 ```
+### Content
 
+The Content files (.content) includes your content
+`[path]` - this will be your access path to your blog entry
+`[title]` - the title for your article
+`[content]` - your content
+
+Example:
+
+```[path]:test-path,
+[title]:test-title,
+[content]:<a href="#">test</a>```
+
+A entry with path `http://pathtoapp.tld/test-path` with title `test-title` and content is a Link
 
 ## Contributing
 
