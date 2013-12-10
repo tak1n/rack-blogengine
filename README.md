@@ -20,13 +20,31 @@ Or install it yourself as:
 
 Create a targetfolder where your Styling & Content is placed.
 
-The Structure must be:
+### Structure
 
--Targetfolder
---layout
----style.css
----layout.html
---test.content
+`targetfolder/layout` - save your layout.html and style.css in this folder
+`targetfolder/images` - your images will be served from this folder (http://urltoapp/images)
+`targetfolder/test.content` - your available blog entries matches to the .content files, each .content file is a blog entry
+
+### Layout
+
+In the layout.html you use {title} and {content} which will then be populated with the values from each .content file
+Example:
+```html
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>{title}</title>
+	</head>
+	<body>
+		<h1>{title}</h1>
+		<div>
+			{content}
+		</div>
+	</body>
+</html>
+```
+
 
 ## Contributing
 
