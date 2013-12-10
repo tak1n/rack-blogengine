@@ -12,6 +12,7 @@ module Rack
 
 			# Parse in .content Documents.
 			# @param target.
+			# @return [Hash] Documents 
 			def self.parseInDocuments(target)
 				@target = target
 				documents = []
@@ -67,6 +68,7 @@ module Rack
 
 			# Replace layout placeholder with content from .content file
 			# @param layout
+			# return [String] layout placeholder replaced with content
 			def self.fillFileContents(layout)
 				layout.gsub! "{title}", @title
 				layout["{content}"] = @content
