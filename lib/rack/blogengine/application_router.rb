@@ -2,7 +2,8 @@ module Rack
     module Blogengine
         class ApplicationRouter
             # Maps documents to routes.
-            # @param env, @param target (Target folder).
+            # @param env Env Contains path info etc...
+            # @param target Target folder
             # @return [Hash] route Hash {:path => "/foo", :response => [Array]}
             def self.map_route(env, target)
             status = 200

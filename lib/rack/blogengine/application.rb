@@ -1,9 +1,8 @@
 module Rack
   module Blogengine
     class Application
-
     	# Call Method for run this method as Rack Middleware.
-		# @param env, Environment contains information such as path, headers etc...
+		# @param env Environment contains information such as path, headers etc...
 		# @return [Array] response Array
 		def self.call(env)
 			# Router for map docs to routes
