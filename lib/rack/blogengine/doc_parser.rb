@@ -9,6 +9,9 @@ module Rack
 			# }]
 			#
 			# HTML contains Content, Style, JS etc...
+
+			# Parse in .content Documents.
+			# @param target.
 			def self.parseInDocuments(target)
 				@target = target
 				documents = []
@@ -35,6 +38,8 @@ module Rack
 				return documents
 			end
 
+			# Get File Contents (path, title, content)
+			# @param file
 			def self.getFileContents(file)
 				# do work on real items
   				content_file = ::File.open("#{@target}/#{file}");
@@ -60,6 +65,8 @@ module Rack
   				end
 			end
 
+			# Replace layout placeholder with content from .content file
+			# @param layout
 			def self.fillFileContents(layout)
 				layout.gsub! "{title}", @title
 				layout["{content}"] = @content

@@ -1,6 +1,8 @@
 module Rack
     module Blogengine
-        class ApplicationRouter 
+        class ApplicationRouter
+            # Maps documents to routes.
+            # @param env, @param target (Target folder).
             def self.map_route(env, target)
             status = 200
     	    header = {"Content-Type" => "text/html; charset=UTF-8"}
