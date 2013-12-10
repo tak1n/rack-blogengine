@@ -12,7 +12,7 @@ module Rack
         path = env["PATH_INFO"]
 
         documents = DocParser.parseInDocuments(target)
-
+       
            
         # Iterate through available docs, if nothing matched return nil
         documents.each do |doc|

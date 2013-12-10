@@ -13,14 +13,14 @@ module Rack
         documents << { path:"/style.css", html: @css }
 
         layout_file = ::File.open("#{@target}/layout/layout.html", "r")
-        @html = layout_file.read
+        @layout = layout_file.read
 
         Dir.foreach("#{target}/") do |item|
           extension = item.split(".")[1]
           next if item == '.' or item == '..' or extension != "content"
   					
           getFileContents(item)
-          fillFileContents(@html)
+          @html = fillFileContents(@layout)
   					
           @document = {path: @path, html: @html}
           documents << @document
@@ -56,12 +56,16 @@ module Rack
         end
       end
 
-	  # Replace layout placeholder with content from .content file
-	  # @param layout
-	  # return [String] layout placeholder replaced with content
+	    # Replace layout placeholder with content from .content file
+	    # @param layout
+	    # return [String] html placeholder replaced with content
       def self.fillFileContents(layout)
-        layout.gsub! "{title}", @title
-        layout["{content}"] = @content
+        html = layout.dup
+
+        html.gsub! "{title}", @title
+        html["{content}"] = @content
+
+        return html
       end
     end
   end
