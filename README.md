@@ -49,8 +49,11 @@ Example:
 ### Content
 
 The Content files (.content) includes your content
+
 `[path]` - this will be your access path to your blog entry
+
 `[title]` - the title for your article
+
 `[content]` - your content
 
 Example:
