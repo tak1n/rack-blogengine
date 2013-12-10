@@ -6,13 +6,11 @@ module Rack
     		header = {"Content-Type" => "text/html"}
     		path = env["PATH_INFO"]
 
-    		#TODO: Replace docdummy with parsed docs from docparser
-    		#docdummy = [{ path: "/foo", html: "<h1>FooHi</h1>"}]
     		documents = DocParser.parseInDocuments(target)
-
+           
+            # Iterate through available docs, if nothing matched return nil
     		documents.each do |doc|
     			if doc[:path] == path
-
     				route_response = {
     					"route" => path,
     					"response" => [status, header, [doc[:html]] ]
@@ -20,9 +18,9 @@ module Rack
 
     				return route_response
     			end
-
-    			return nil
     		end
+
+            return nil
     	end
     end
   end
