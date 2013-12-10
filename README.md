@@ -58,9 +58,11 @@ The Content files (.content) includes your content
 
 Example:
 
-```[path]:test-path,
+```bash
+[path]:test-path,
 [title]:test-title,
-[content]:<a href="#">test</a>```
+[content]:<a href="#">test</a>
+```
 
 A entry with path `http://pathtoapp.tld/test-path` with title `test-title` and content is a Link
 
