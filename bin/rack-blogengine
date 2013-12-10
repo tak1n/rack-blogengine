@@ -3,36 +3,36 @@ require 'rack/blogengine'
 require 'rack'   
 
 
-	command = ARGV[0]
+command = ARGV[0]
 
-	if ARGV[1]
-		target = ARGV[1]
-	else
-		target = "";
-	end
+if ARGV[1]
+  target = ARGV[1]
+else
+  target = "";
+end
 
-	if command == "run"
-		#To stuff here
-		unless target.empty? 
-			$targetfolder = target
-			app = Rack::Builder.new do
-				use Rack::CommonLogger
-  				use Rack::ShowExceptions
+if command == "run"
+  #To stuff here
+  unless target.empty? 
+    $targetfolder = target
+    app = Rack::Builder.new do
+      use Rack::CommonLogger
+      use Rack::ShowExceptions
 
-  				map "/images" do
-    				run Rack::Directory.new("#{$targetfolder}/images")
-  				end
+      map "/images" do
+        run Rack::Directory.new("#{$targetfolder}/images")
+      end
 
-  				use Rack::Lint
-    			run Rack::Blogengine::Application
-			end
+      use Rack::Lint
+      run Rack::Blogengine::Application
+    end
 
-			Rack::Server.start( :app => app )
-		else 
-			puts "Specify a targetfolder!"
-		end
-	else
-		puts "Use rake-blogengine run!"
-	end
+    Rack::Server.start( :app => app )
+  else 
+    puts "Specify a targetfolder!"
+  end
+else
+  puts "Use rake-blogengine run!"
+end
 
  
