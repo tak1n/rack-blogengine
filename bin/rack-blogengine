@@ -14,10 +14,20 @@ require 'rack'
 	if command == "run"
 		#To stuff here
 		unless target.empty? 
-			Rack::Handler::WEBrick.run(
-	  			Rack::Blogengine::Application.new(target),
-	  			:Port => 9200
-			)
+			$targetfolder = target
+			app = Rack::Builder.new do
+				use Rack::CommonLogger
+  				use Rack::ShowExceptions
+
+  				map "/images" do
+    				run Rack::Directory.new("#{$targetfolder}/images")
+  				end
+
+  				use Rack::Lint
+    			run Rack::Blogengine::Application
+			end
+
+			Rack::Server.start( :app => app )
 		else 
 			puts "Specify a targetfolder!"
 		end
