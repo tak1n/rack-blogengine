@@ -4,12 +4,19 @@ require 'rack/blogengine/command_line_interface'
 
 command = ARGV[0]
 
-if ARGV[1]
-  target = ARGV[1]
-else
-  target = "";
-end
+
+target = ARGV[1]
+target = "" if !ARGV[1]
+
 
 cli = Rack::Blogengine::CommandLineInterface.new
-cli.send(command, target)
+methods = Rack::Blogengine::CommandLineInterface.instance_methods(false)
+
+begin
+  cli.send(command, target)
+rescue TypeError
+  puts "Available commands are #{methods}"
+rescue NoMethodError
+  puts "Available commands are #{methods}"
+end
  
