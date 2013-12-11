@@ -4,6 +4,8 @@ require 'rack/blogengine'
 module Rack
   module Blogengine
     class CommandLineInterface
+    	# Method to run the cli command
+    	# @param [String] target
     	def run(target)
     	  unless target.empty? 
             $targetfolder = target
