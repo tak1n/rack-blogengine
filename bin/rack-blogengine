@@ -11,5 +11,5 @@ else
 end
 
 cli = Rack::Blogengine::CommandLineInterface.new
-cli.send(command, [target])
+cli.send(command, target)
  

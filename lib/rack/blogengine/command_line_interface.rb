@@ -1,3 +1,6 @@
+require 'rack'
+require 'rack/blogengine'
+
 module Rack
   module Blogengine
     class CommandLineInterface
