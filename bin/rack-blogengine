@@ -19,8 +19,8 @@ if command == "run"
       use Rack::CommonLogger
       use Rack::ShowExceptions
 
-      map "/images" do
-        run Rack::Directory.new("#{$targetfolder}/images")
+      map "/assets" do
+        run Rack::Directory.new("#{$targetfolder}/assets")
       end
 
       use Rack::Lint
