@@ -1,6 +1,5 @@
 #!/usr/bin/env ruby
-require 'rack/blogengine'
-require 'rack'   
+require 'rack/blogengine/command_line_interface' 
 
 
 command = ARGV[0]
@@ -11,28 +10,6 @@ else
   target = "";
 end
 
-if command == "run"
-  #To stuff here
-  unless target.empty? 
-    $targetfolder = target
-    app = Rack::Builder.new do
-      use Rack::CommonLogger
-      use Rack::ShowExceptions
-
-      map "/assets" do
-        run Rack::Directory.new("#{$targetfolder}/assets")
-      end
-
-      use Rack::Lint
-      run Rack::Blogengine::Application
-    end
-
-    Rack::Server.start( :app => app )
-  else 
-    puts "Specify a targetfolder!"
-  end
-else
-  puts "Use rake-blogengine run!"
-end
-
+cli = Rack::Blogengine::CommandLineInterface.new
+cli.send(command, [target])
  
