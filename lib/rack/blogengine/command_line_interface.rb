@@ -26,6 +26,10 @@ module Rack
             puts "Specify a targetfolder!"
           end
     	end
+
+    	# TODO write generate method to generate blog skeleton (assets, layout etc)
+    	def generate(folder)
+    	end
     end
   end
 end
