@@ -2,7 +2,7 @@
 require 'rack/blogengine/command_line_interface' 
 
 
-command = ARGV[0]
+command = ARGV[0].to_sym
 
 
 target = ARGV[1]

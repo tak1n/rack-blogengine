@@ -21,7 +21,7 @@ module Rack
               run Rack::Blogengine::Application
             end
 
-            Rack::Server.start( :app => app )
+            Rack::Server.start( :app => app, :Port => 3000 )
           else 
             puts "Specify a targetfolder!"
           end
