@@ -24,7 +24,7 @@ Create a targetfolder where your Styling & Content is placed.
 
 `targetfolder/layout` - save your layout.html in this folder
 
-`targetfolder/assets` - your assets (images, js, css etc) will be served from this folder (http://pathtoapp.tld/images)
+`targetfolder/assets` - your assets (images, js, css etc) will be served from this folder (http://pathtoapp.tld/assets)
 
 `targetfolder/test.content` - your available blog entries matches to the .content files, each .content file is a blog entry
 
