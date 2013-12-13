@@ -18,7 +18,7 @@ Or install it yourself as:
 
 ## Usage
 
-Create a targetfolder where your Styling & Content is placed.
+`rack-blogengine generate <folder>` will create your Folder skeleton
 
 ### Structure
 
