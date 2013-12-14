@@ -4,6 +4,15 @@ require 'rack/blogengine'
 module Rack
   module Blogengine
     class CommandLineInterface
+      def method_missing(name, *args)
+        puts "Command #{name} not available"
+        print "Available Commands are: \n\n"
+        self.class.instance_methods(false).each do |method|
+          print "\t #{method}\n" unless method == :method_missing
+        end
+        print "\n"
+      end
+
     	# Method to run the cli command
     	# @param [String] target
     	def run(target)

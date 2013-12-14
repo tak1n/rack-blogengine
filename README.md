@@ -57,7 +57,7 @@ The Content files (.content) includes your content
 `[content][/content]` - your content
 
 ### Hint
-For a root document (http://pathtoapp.tld/) path should be empty (path:,)
+For a root document (http://pathtoapp.tld/) path should be empty ([path]:[/path])
 
 ## Contributing
 

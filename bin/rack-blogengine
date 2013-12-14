@@ -14,11 +14,6 @@ target = "" if !ARGV[1]
 
 cli = Rack::Blogengine::CommandLineInterface.new
 methods = Rack::Blogengine::CommandLineInterface.instance_methods(false)
-begin
-  cli.send(command, target)
-rescue TypeError
-  puts "Available commands are #{methods}"
-rescue NoMethodError
-  puts "Available commands are #{methods}"
-end
+  
+cli.send(command, target)
  
