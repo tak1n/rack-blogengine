@@ -32,7 +32,11 @@ module Rack
         content_file = ::File.open("#{@target}/#{file}");
         content = content_file.read
 
-        contentarray = content.split(",")
+        content["/path"] = "/close"
+        content["/title"] = "/close"
+        content["/content"] = "/close"
+  
+        contentarray = content.split("[/close]")
 
         contentarray.each do |contentblock|
           if contentblock.include? "[path]:"
