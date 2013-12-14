@@ -8,7 +8,7 @@ module Rack
         @target = target
         documents = []
 
-        layout_file = ::File.open("#{@target}/layout/layout.html", "r")
+        layout_file = ::File.open("#{@target}/assets/layout/layout.html", "r")
         @layout = layout_file.read
 
         Dir.foreach("#{target}/") do |item|
