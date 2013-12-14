@@ -50,11 +50,11 @@ Example:
 
 The Content files (.content) includes your content
 
-`[path]` - this will be your access path to your blog entry
+`[path][/path]` - this will be your access path to your blog entry
 
-`[title]` - the title for your article
+`[title][/title]` - the title for your article
 
-`[content]` - your content
+`[content][/content]` - your content
 
 ### Hint
 For a root document (http://pathtoapp.tld/) path should be empty (path:,)
