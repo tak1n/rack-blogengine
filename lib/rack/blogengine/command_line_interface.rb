@@ -36,7 +36,8 @@ module Rack
         end
       end
 
-    	# TODO write generate method to generate blog skeleton (assets, layout etc)
+      # Command to generate the folder skeleton
+      # @param [String] folder
       def generate(folder)
         puts "Generating folder skeleton"
         system("mkdir #{folder} && mkdir #{folder}/assets && mkdir #{folder}/assets/layout && mkdir #{folder}/assets/js && mkdir #{folder}/assets/style && mkdir #{folder}/assets/images")
