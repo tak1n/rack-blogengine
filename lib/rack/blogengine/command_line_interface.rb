@@ -15,7 +15,7 @@ module Rack
 
     	# Method to run the cli command
     	# @param [String] target
-    	def run(target)
+      def run(target)
     	  unless target.empty? 
           $targetfolder = target
           app = Rack::Builder.new do
