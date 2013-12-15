@@ -13,10 +13,10 @@ module Rack
         print "\n"
       end
 
-    	# Method to run the cli command
-    	# @param [String] target
+      # Method to run the cli command
+      # @param [String] target
       def run(target)
-    	  unless target.empty? 
+        unless target.empty? 
           $targetfolder = target
           app = Rack::Builder.new do
             use Rack::CommonLogger
