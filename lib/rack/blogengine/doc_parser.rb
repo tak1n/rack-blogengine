@@ -28,10 +28,10 @@ module Rack
       # Get File Contents (path, title, content)
       # @param file
       def self.getFileContents(file)
-        # do work on real items
         content_file = ::File.open("#{@target}/#{file}");
         content = content_file.read
 
+        # Replace Closing tags
         content["/path"] = "/close"
         content["/title"] = "/close"
         content["/content"] = "/close"
