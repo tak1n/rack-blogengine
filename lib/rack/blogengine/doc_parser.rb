@@ -18,8 +18,14 @@ module Rack
           getFileContents(item)
           @html = fillFileContents(@layout)
   					
-          @document = {path: @path, html: @html}
-          documents << @document
+          @document.path = @path
+          @document.html = @html
+
+          documents << @document.to_hash
+        end
+
+        documents.each do |document|
+          puts document
         end
 
         return documents
