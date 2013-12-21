@@ -21,15 +21,20 @@ module Rack
           @document = Document.new
           @document.path = @path
           @document.html = @html
+          @document.title = @title
 
           documents << @document
         end
 
         documents.each do |document|
-          document.exec_content_operator
+          document.exec_content_operator(documents)
         end
 
-        return documents
+        documentshashed = documents.map do |document|
+          document.to_hash
+        end
+
+        return documentshashed
       end
 
       # Get File Contents (path, title, content)
