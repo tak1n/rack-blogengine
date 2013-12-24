@@ -11,9 +11,10 @@ module Rack
         hash
       end
 
-      def exec_content_operator(documents)
-        @html.scan(/\{\%(.*?)\%\}/).each do |operator|
-          Operator.send(operator[0].strip.to_sym, documents, @html)
+      def exec_content_operator(documents, target)
+        @html.scan(/\{\%(.*?)\%\}/).each do |contentoperator|
+          operator = Operator.new(target)
+          operator.send(contentoperator[0].strip.to_sym, documents, @html)
         end
       end
     end
