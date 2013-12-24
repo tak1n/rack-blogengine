@@ -27,7 +27,7 @@ module Rack
         end
 
         documents.each do |document|
-          document.exec_content_operator(documents)
+          document.exec_content_operator(documents, @target)
         end
 
         documentshashed = documents.map do |document|
