@@ -17,7 +17,8 @@ module Rack
       # @param [String] target
       def run(target)
         unless target.empty? 
-          $targetfolder = target
+          system("cd #{target}")
+          $targetfolder = "#{Dir.pwd}/#{target}"
           app = Rack::Builder.new do
             use Rack::CommonLogger
             use Rack::ShowExceptions
