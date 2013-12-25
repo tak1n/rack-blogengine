@@ -59,6 +59,45 @@ The Content files (.content) includes your content
 ### Hint
 For a root document (http://pathtoapp.tld/) path should be empty ([path]:[/path])
 
+### Operators
+
+In version 0.1.2 operator handling is included.
+To use this new feature you have to create a operator directory in your rackblog folder.
+In this directory create your operators (.rb files) with following skeleton
+
+```ruby
+module UserOperator
+end
+```
+
+Your operators are normal ruby methods defined in this module.
+Available params are documents & html
+
+Param documents: 
+An Array with document objects.
+This Document objects has following attributes: path, title, html
+
+Param html:
+The content of the file where the operator was included
+
+#### Example
+
+```ruby
+module UserOperator
+  def show_nav
+  end
+end
+```
+
+In your layout.html then
+
+```html
+<div class="nav">	
+	{% show_nav %}
+</div>
+```
+
+
 ## Contributing
 
 1. Fork it
