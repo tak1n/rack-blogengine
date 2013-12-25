@@ -21,7 +21,6 @@ module Rack
               target = target.dup
               target["/"] = ""
           end
-          puts target
           system("cd #{target}")
           $targetfolder = "#{Dir.pwd}/#{target}"
           app = Rack::Builder.new do
