@@ -16,7 +16,12 @@ module Rack
       # Method to run the cli command
       # @param [String] target
       def run(target)
-        unless target.empty? 
+        unless target.empty?
+          if target.include?("/") 
+              target = target.dup
+              target["/"] = ""
+          end
+          puts target
           system("cd #{target}")
           $targetfolder = "#{Dir.pwd}/#{target}"
           app = Rack::Builder.new do
