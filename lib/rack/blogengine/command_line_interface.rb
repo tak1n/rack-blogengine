@@ -1,4 +1,5 @@
 require 'rack'
+require 'rack/attack'
 require 'rack/blogengine'
 
 module Rack
@@ -31,6 +32,7 @@ module Rack
               run Rack::Directory.new("#{$targetfolder}/assets")
             end
 
+            use Rack::Attack
             use Rack::Lint
             run Rack::Blogengine::Application
           end
