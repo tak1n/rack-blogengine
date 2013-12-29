@@ -5,8 +5,8 @@ module Rack
 
       def to_hash
         hash = {}
-        instance_variables.each do
-          |var| hash[var.to_s.delete("@").to_sym] = instance_variable_get(var) unless var.to_s == "@title"
+        instance_variables.each do |var| 
+          hash[var.to_s.delete("@").to_sym] = instance_variable_get(var) unless var.to_s == "@title"
         end
         hash
       end
