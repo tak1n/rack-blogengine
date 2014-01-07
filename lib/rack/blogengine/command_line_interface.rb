@@ -1,5 +1,5 @@
 require 'rack'
-require 'rack/attack'
+#require 'rack/attack'
 require 'rack/blogengine'
 
 module Rack
@@ -22,22 +22,25 @@ module Rack
               target = target.dup
               target["/"] = ""
           end
-          system("cd #{target}")
-          $targetfolder = "#{Dir.pwd}/#{target}"
-          app = Rack::Builder.new do
-            use Rack::CommonLogger
-            use Rack::ShowExceptions
 
-            map "/assets" do
-              run Rack::Directory.new("#{$targetfolder}/assets")
+          if Dir.exists?("#{target}")
+            system("cd #{target}")
+            $targetfolder = "#{Dir.pwd}/#{target}"
+            app = Rack::Builder.new do
+              use Rack::CommonLogger
+              use Rack::ShowExceptions
+
+              map "/assets" do
+                run Rack::Directory.new("#{$targetfolder}/assets")
+              end
+              use Rack::Lint
+              run Rack::Blogengine::Application
             end
 
-            use Rack::Attack
-            use Rack::Lint
-            run Rack::Blogengine::Application
+            Rack::Server.start( :app => app, :Port => 3000 )
+          else
+            puts "Target is not a folder!"
           end
-
-          Rack::Server.start( :app => app, :Port => 3000 )
         else 
           puts "Specify a targetfolder!"
         end
