@@ -7,13 +7,8 @@ else
 	command = "".to_sym
 end
 
-
 target = ARGV[1]
 target = "" if !ARGV[1]
 
-
-cli = Rack::Blogengine::CommandLineInterface.new
-methods = Rack::Blogengine::CommandLineInterface.instance_methods(false)
-  
+cli = Rack::Blogengine::CommandLineInterface.new 
 cli.send(command, target)
- 
