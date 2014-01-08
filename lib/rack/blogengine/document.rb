@@ -13,8 +13,11 @@ module Rack
 
       def exec_content_operator(documents, target)
         @html.scan(/\{\%(.*?)\%\}/).each do |contentoperator|
+          contentoperator = contentoperator[0].strip.to_sym
           operator = Operator.new(target)
-          operator.send(contentoperator[0].strip.to_sym, documents, @html)
+          operatorhtml = operator.send(contentoperator, documents, @html)
+
+          @html["{% "+contentoperator.to_s+" %}"] = operatorhtml
         end
       end
     end
