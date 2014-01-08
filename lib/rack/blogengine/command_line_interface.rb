@@ -1,6 +1,7 @@
 require 'rack'
 #require 'rack/attack'
 require 'rack/blogengine'
+require 'yaml'
 
 module Rack
   module Blogengine
@@ -37,6 +38,8 @@ module Rack
               run Rack::Blogengine::Application
             end
 
+            config = YAML::load(File.open("#{$targetfolder}/config.yml"))
+            puts config["port"];
             Rack::Server.start( :app => app, :Port => 3000 )
           else
             puts "Target is not a folder!"
@@ -51,6 +54,10 @@ module Rack
       def generate(folder)
         puts "Generating folder skeleton"
         system("mkdir #{folder} && mkdir #{folder}/assets && mkdir #{folder}/assets/layout && mkdir #{folder}/assets/js && mkdir #{folder}/assets/style && mkdir #{folder}/assets/images")
+      end
+
+      def version?
+        puts Rack::Blogengine::VERSION
       end
     end
   end
