@@ -18,6 +18,7 @@ module Rack
       # Method to run the cli command
       # @param [String] target
       def run(target)
+
         unless target.empty?
           if target.include?("/") 
               target = target.dup
@@ -26,7 +27,9 @@ module Rack
 
           if Dir.exists?("#{target}")
             system("cd #{target}")
+
             $targetfolder = "#{Dir.pwd}/#{target}"
+            config = YAML::load(::File.open("#{$targetfolder}/config.yml"))
             app = Rack::Builder.new do
               use Rack::CommonLogger
               use Rack::ShowExceptions
@@ -38,9 +41,10 @@ module Rack
               run Rack::Blogengine::Application
             end
 
-            config = YAML::load(File.open("#{$targetfolder}/config.yml"))
-            puts config["port"];
-            Rack::Server.start( :app => app, :Port => 3000 )
+            
+            port = config["Port"];
+            server = config["Server"];
+            Rack::Server.start( :app => app, :Port => port, :server => server )
           else
             puts "Target is not a folder!"
           end
