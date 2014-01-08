@@ -11,4 +11,9 @@ target = ARGV[1]
 target = "" if !ARGV[1]
 
 cli = Rack::Blogengine::CommandLineInterface.new 
-cli.send(command, target)
+
+if target != ""
+  cli.send(command, target)
+else
+  cli.send(command)
+end
