@@ -26,6 +26,7 @@ module Rack
           documents << @document
         end
 
+        # Has to exec operator after all docs were read, so documents are available for operators (list all docs, etc...)
         documents.each do |document|
           document.exec_content_operator(documents, @target)
         end
