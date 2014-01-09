@@ -27,7 +27,7 @@ module Rack
           documents << @document
         end
 
-        #sort documents
+        sort documents
 
         # Has to exec operator after all docs were read, so documents are available for operators (list all docs, etc...)
         documents.each do |document|
@@ -94,12 +94,13 @@ module Rack
       # Sort documents array by date of each documenthash
       # @param [Array] documents
       # return [Array] documents (sorted)
-      # TODO compare array of objects
+      # Should it be sorted in Core or in the operator??
       def self.sort(documents)
-        documentssorted = documents.sort do | a, b |
-          puts a.date
-          puts b.date
+
+        documents.sort! do | a, b |
+          a.date <=> b.date
         end
+
         return documents
       end
     end
