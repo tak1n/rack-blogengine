@@ -15,8 +15,6 @@ module Rack
        
            
         # Iterate through available docs, if nothing matched return nil
-        # TODO: Dont iterate through every doc, get requested doc from DocParser
-        # Operators should have access to ALL available docs (title, path, html etc)
         documents.each do |doc|
           if doc[:path] == path
             route_response = {
