@@ -1,5 +1,4 @@
 require 'rack'
-#require 'rack/attack'
 require 'rack/blogengine'
 require 'yaml'
 
