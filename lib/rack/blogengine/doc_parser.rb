@@ -22,6 +22,7 @@ module Rack
           @document.path = @path
           @document.html = @html
           @document.title = @title
+          @document.date = @date
 
           documents << @document
         end
@@ -48,6 +49,7 @@ module Rack
         content["/path"] = "/close"
         content["/title"] = "/close"
         content["/content"] = "/close"
+        content["/date"] = "/close"
   
         contentarray = content.split("[/close]")
 
@@ -59,12 +61,17 @@ module Rack
 
           if contentblock.include? "[title]:"
             contentblock["[title]:"] = ""
-            @title = contentblock
+            @title = contentblock.strip
           end
 
           if contentblock.include? "[content]:"
             contentblock["[content]:"] = ""
-            @content = contentblock
+            @content = contentblock.strip
+          end
+
+          if contentblock.include? "[date]:"
+            contentblock["[date]:"] = ""
+            @date = contentblock.strip
           end
         end
       end
@@ -77,6 +84,7 @@ module Rack
 
         html.gsub! "{title}", @title
         html["{content}"] = @content
+        html.gsub! "{date}", @date
 
         return html
       end
