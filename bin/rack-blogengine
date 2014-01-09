@@ -2,9 +2,9 @@
 require 'rack/blogengine/command_line_interface' 
 
 if ARGV[0]
-	command = ARGV[0].to_sym
+  command = ARGV[0].to_sym
 else
-	command = "".to_sym
+  command = "".to_sym
 end
 
 target = ARGV[1]
