@@ -27,6 +27,8 @@ module Rack
           documents << @document
         end
 
+        #sort documents
+
         # Has to exec operator after all docs were read, so documents are available for operators (list all docs, etc...)
         documents.each do |document|
           document.exec_content_operator(documents, @target)
@@ -40,7 +42,7 @@ module Rack
       end
 
       # Get File Contents (path, title, content)
-      # @param file
+      # @param [String] file
       def self.getFileContents(file)
         content_file = ::File.open("#{@target}/#{file}");
         content = content_file.read
@@ -77,7 +79,7 @@ module Rack
       end
 
 	    # Replace layout placeholder with content from .content file
-	    # @param layout
+	    # @param [String] layout
 	    # return [String] html placeholder replaced with content
       def self.fillFileContents(layout)
         html = layout.dup
@@ -87,6 +89,18 @@ module Rack
         html.gsub! "{date}", @date
 
         return html
+      end
+
+      # Sort documents array by date of each documenthash
+      # @param [Array] documents
+      # return [Array] documents (sorted)
+      # TODO compare array of objects
+      def self.sort(documents)
+        documentssorted = documents.sort do | a, b |
+          puts a.date
+          puts b.date
+        end
+        return documents
       end
     end
   end
