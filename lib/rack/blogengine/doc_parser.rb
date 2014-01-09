@@ -73,7 +73,7 @@ module Rack
 
           if contentblock.include? "[date]:"
             contentblock["[date]:"] = ""
-            @date = contentblock.strip
+            @date = Date.new(contentblock.strip)
           end
         end
       end
@@ -98,7 +98,7 @@ module Rack
       def self.sort(documents)
 
         documents.sort! do | a, b |
-          a.date <=> b.date
+          a.date.to_time.to_i <=> b.date.to_time.to_i
         end
 
         return documents
