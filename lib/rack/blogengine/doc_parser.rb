@@ -73,7 +73,9 @@ module Rack
 
           if contentblock.include? "[date]:"
             contentblock["[date]:"] = ""
-            @date = Date.new(contentblock.strip)
+            #TODO: Generate Date out of [date] string
+            #@date = Date.new(..splitted date string..)
+            @date = contentblock.strip
           end
         end
       end
@@ -96,7 +98,6 @@ module Rack
       # return [Array] documents (sorted)
       # Should it be sorted in Core or in the operator??
       def self.sort(documents)
-
         documents.sort! do | a, b |
           a.date.to_time.to_i <=> b.date.to_time.to_i
         end
