@@ -12,7 +12,7 @@ Rack Middleware to serve a simple blog
 
 ### Structure
 
-This folder and files will be created for you
+These folders and files will be created for you
 
 #### Folders
 `targetfolder/assets`
