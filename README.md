@@ -16,18 +16,28 @@ These folders and files will be created for you
 
 #### Folders
 `targetfolder/assets`
+
 `targetfolder/assets/style`
+
 `targetfolder/assets/js`
+
 `targetfolder/assets/layout`
+
 `targetfolder/assets/images`
+
 `targetfolder/operator`
 
 #### Files
 `targetfolder/assets/style/style.css`
+
 `targetfolder/assets/js/script.js`
+
 `targetfolder/assets/layout/layout.html` (filled with basic structure)
+
 `targetfolder/index.content` (filled with dummy content)
+
 `targetfolder/config.yml` (basic config setup - server: webrick, port: 3000)
+
 `targetfolder/operator/operator.rb` (define your operator methods in module UserOperator)
 
 ### Layout
