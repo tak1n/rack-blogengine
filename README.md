@@ -4,16 +4,6 @@ Rack Middleware to serve a simple blog
 
 ## Installation
 
-Add this line to your application's Gemfile:
-
-    gem 'rack-blogengine'
-
-And then execute:
-
-    $ bundle
-
-Or install it yourself as:
-
     $ gem install rack-blogengine
 
 ## Usage
@@ -22,15 +12,27 @@ Or install it yourself as:
 
 ### Structure
 
-`targetfolder/layout` - save your layout.html in this folder
+This folder and files will be created for you
 
-`targetfolder/assets` - your assets (images, js, css etc) will be served from this folder (http://pathtoapp.tld/assets)
+#### Folders
+`targetfolder/assets`
+`targetfolder/assets/style`
+`targetfolder/assets/js`
+`targetfolder/assets/layout`
+`targetfolder/assets/images`
+`targetfolder/operator`
 
-`targetfolder/test.content` - your available blog entries matches to the .content files, each .content file is a blog entry
+#### Files
+`targetfolder/assets/style/style.css`
+`targetfolder/assets/js/script.js`
+`targetfolder/assets/layout/layout.html` (filled with basic structure)
+`targetfolder/index.content` (filled with dummy content)
+`targetfolder/config.yml` (basic config setup - server: webrick, port: 3000)
+`targetfolder/operator/operator.rb` (define your operator methods in module UserOperator)
 
 ### Layout
 
-In the layout.html you use {title} and {content} which will then be populated with the values from each .content file
+In the layout.html you use {title}, {content} and {date} which will then be populated with the values from each .content file
 Example:
 ```html
 <!DOCTYPE html>
@@ -41,6 +43,7 @@ Example:
 	<body>
 		<h1>{title}</h1>
 		<div>
+			{date}
 			{content}
 		</div>
 	</body>
@@ -53,6 +56,8 @@ The Content files (.content) includes your content
 `[path][/path]` - this will be your access path to your blog entry
 
 `[title][/title]` - the title for your article
+
+`[date][/date]` - publishing date of your article
 
 `[content][/content]` - your content
 
