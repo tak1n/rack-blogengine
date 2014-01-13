@@ -75,7 +75,7 @@ module Rack
             contentblock["[date]:"] = ""
             datearray = contentblock.split(",")
             datearray = datearray.map do |date|
-              date = date.to_f
+              date = date.to_i
             end
 
             @date = Date.new(datearray[0], datearray[1], datearray[2])
@@ -91,7 +91,7 @@ module Rack
 
         html.gsub! "{title}", @title
         html["{content}"] = @content
-        html.gsub! "{date}", @date.strftime('%a %d %b %Y')
+        html.gsub! "{date}", @date.strftime('%d.%m.%Y')
 
         return html
       end
