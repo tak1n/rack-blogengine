@@ -73,9 +73,12 @@ module Rack
 
           if contentblock.include? "[date]:"
             contentblock["[date]:"] = ""
-            #TODO: Generate Date out of [date] string
-            #@date = Date.new(..splitted date string..)
-            @date = contentblock.strip
+            datearray = contentblock.split(",")
+            datearray = datearray.map do |date|
+              date = date.to_f
+            end
+
+            @date = Date.new(datearray[0], datearray[1], datearray[2])
           end
         end
       end
@@ -88,7 +91,7 @@ module Rack
 
         html.gsub! "{title}", @title
         html["{content}"] = @content
-        html.gsub! "{date}", @date
+        html.gsub! "{date}", @date.strftime('%a %d %b %Y')
 
         return html
       end
