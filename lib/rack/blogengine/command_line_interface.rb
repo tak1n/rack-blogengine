@@ -14,7 +14,7 @@ module Rack
         print "\n"
       end
 
-      # Method to run the cli command
+      # Method to run the rack Application
       # @param [String] target
       def run(target)
 
@@ -54,7 +54,6 @@ module Rack
 
       # Command to generate the folder skeleton
       # @param [String] folder
-      # TODO: refactor this - similar functions for each set up set => outsource to a method setup()
       def generate(folder)
         puts "\tGenerating folder skeleton\n"
         system("mkdir #{folder}")
@@ -68,39 +67,34 @@ module Rack
         puts "\n\tSetting up essential Files\n"
 
         # SET UP operator.rb
-        puts "\tSet up #{folder}/operator/operator.rb\n"
-        system("touch #{folder}/operator/operator.rb")
-        content = IO.read("#{::File.dirname(__FILE__)}/files/operator.rb")
-        ::File.open("#{folder}/operator/operator.rb", 'w') { |file| file.write(content) }
+        setup("operator.rb", "#{folder}/operator", true)
 
         # SET UP config.yml
-        puts "\tSet up config.yml\n"
-        system("touch #{folder}/config.yml")
-        content = IO.read("#{::File.dirname(__FILE__)}/files/config.yml")
-        ::File.open("#{folder}/config.yml", 'w') { |file| file.write(content) }
+        setup("config.yml", "#{folder}", true)
 
         # SET UP index.content
-        puts "\tSet up #{folder}/index.content\n"
-        system("touch #{folder}/index.content")
-        content = IO.read("#{::File.dirname(__FILE__)}/files/index.content")
-        ::File.open("#{folder}/index.content", 'w') { |file| file.write(content) }
+        setup("index.content", "#{folder}", true)
 
         # SET UP layout.html
-        puts "\tSet up #{folder}/assets/layout/layout.html\n"
-        system("touch #{folder}/assets/layout/layout.html")
-        content = IO.read("#{::File.dirname(__FILE__)}/files/layout.html")
-        ::File.open("#{folder}/assets/layout/layout.html", 'w') { |file| file.write(content) }
+        setup("layout.html", "#{folder}/assets/layout", true)
 
         # SET UP style.css
-        puts "\tSet up #{folder}/assets/style/style.css\n"
-        system("touch #{folder}/assets/style/style.css")
+        setup("style.css", "#{folder}/assets/style", false)
 
-        # SET UP style.css
-        puts "\tSet up #{folder}/assets/js/script.js\n"
-        system("touch #{folder}/assets/js/script.js")
+        # SET UP script.js
+        setup("script.js", "#{folder}/assets/js", false)
 
         puts "\n\tSetup finished! Have Fun\n"
         puts "\tTo test it type rack-blogengine run #{folder}"
+      end
+
+      def setup(name, path, essential)
+        puts "\tSet up #{path}/#{name}\n"
+        system("touch #{path}/#{name}")
+        if essential
+          content = IO.read("#{::File.dirname(__FILE__)}/files/#{name}")
+          ::File.open("#{path}/#{name}", 'w') { |file| file.write(content) }
+        end
       end
 
       # Display Version
