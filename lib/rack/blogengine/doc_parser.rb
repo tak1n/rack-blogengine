@@ -83,9 +83,9 @@ module Rack
         end
       end
 
-	    # Replace layout placeholder with content from .content file
-	    # @param [String] layout
-	    # return [String] html placeholder replaced with content
+      # Replace layout placeholder with content from .content file
+      # @param [String] layout
+      # return [String] html placeholder replaced with content
       def self.fillFileContents(layout)
         html = layout.dup
 
