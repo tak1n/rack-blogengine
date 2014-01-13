@@ -9,7 +9,7 @@ module Rack
         puts "Command #{name} not available"
         print "Available Commands are: \n\n"
         self.class.instance_methods(false).each do |method|
-          print "\t #{method}\n" unless method == :method_missing
+          print "\t #{method}\n" unless method == :method_missing || method == :setup
         end
         print "\n"
       end
@@ -88,6 +88,10 @@ module Rack
         puts "\tTo test it type rack-blogengine run #{folder}"
       end
 
+      # Helper method for generate to set up all essential files
+      # param [String] name
+      # param [String] path
+      # param [boolean] essential
       def setup(name, path, essential)
         puts "\tSet up #{path}/#{name}\n"
         system("touch #{path}/#{name}")
