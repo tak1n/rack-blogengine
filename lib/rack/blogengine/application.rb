@@ -9,7 +9,8 @@ module Rack
         route = ApplicationRouter.map_route(env, $targetfolder) 
         if route  
           return route["response"] 
-        else 
+        else
+          #TODO Errorpage handling
           return [404, {"Content-Type" => "text/html; charset=UTF-8"}, ["Page not found"]] 
         end 
       end                
