@@ -9,7 +9,7 @@ module Rack
         puts "Command #{name} not available"
         print "Available Commands are: \n\n"
         self.class.instance_methods(false).each do |method|
-          print "\t #{method}\n" unless method == :method_missing || method == :setup || method == :getConfig
+          print "\t #{method}\n" unless method == :method_missing #|| method == :setup || method == :getConfig
         end
         print "\n"
       end
@@ -56,19 +56,6 @@ module Rack
         end
       end
 
-      # Get YAML Config settings for Server.start && HTTPauth
-      def getConfig(target)
-        configYAML = YAML::load(::File.open("#{target}/config.yml"))
-
-        port = configYAML["Port"]
-        server = configYAML["Server"]
-        username = configYAML["HTTPauth"]["username"].to_s.strip
-        password = configYAML["HTTPauth"]["password"].to_s.strip
-        usage = configYAML["HTTPauth"]["usage"]
-
-        config = {"Port" => port, "Server" => server, "Username" => username, "Password" => password, "Usage" => usage}
-      end
-
       # Command to generate the folder skeleton
       # @param [String] folder
       def generate(folder)
@@ -105,6 +92,16 @@ module Rack
         puts "\tTo test it type rack-blogengine run #{folder}"
       end
 
+      
+
+      # Display Version
+      # return [String] VERSION
+      def version?
+        puts Rack::Blogengine::VERSION
+      end
+
+      private
+
       # Helper method for generate to set up all essential files
       # param [String] name
       # param [String] path
@@ -118,10 +115,17 @@ module Rack
         end
       end
 
-      # Display Version
-      # return [String] VERSION
-      def version?
-        puts Rack::Blogengine::VERSION
+      # Get YAML Config settings for Server.start && HTTPauth
+      def getConfig(target)
+        configYAML = YAML::load(::File.open("#{target}/config.yml"))
+
+        port = configYAML["Port"]
+        server = configYAML["Server"]
+        username = configYAML["HTTPauth"]["username"].to_s.strip
+        password = configYAML["HTTPauth"]["password"].to_s.strip
+        usage = configYAML["HTTPauth"]["usage"]
+
+        config = {"Port" => port, "Server" => server, "Username" => username, "Password" => password, "Usage" => usage}
       end
     end
   end
