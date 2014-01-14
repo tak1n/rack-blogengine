@@ -9,7 +9,7 @@ module Rack
         puts "Command #{name} not available"
         print "Available Commands are: \n\n"
         self.class.instance_methods(false).each do |method|
-          print "\t #{method}\n" unless method == :method_missing || method == :setup
+          print "\t #{method}\n" unless method == :method_missing || method == :setup || method == :getConfig
         end
         print "\n"
       end
@@ -17,7 +17,6 @@ module Rack
       # Method to run the rack Application
       # @param [String] target
       def run(target)
-
         unless target.empty?
           if target.include?("/") 
               target = target.dup
@@ -28,28 +27,46 @@ module Rack
             system("cd #{target}")
 
             $targetfolder = "#{Dir.pwd}/#{target}"
-            config = YAML::load(::File.open("#{$targetfolder}/config.yml"))
-            app = Rack::Builder.new do
-              use Rack::CommonLogger
-              use Rack::ShowExceptions
+            config = getConfig($targetfolder)
 
+            app = Rack::Builder.new do
               map "/assets" do
                 run Rack::Directory.new("#{$targetfolder}/assets")
               end
+
+              use Rack::CommonLogger
+              use Rack::ShowExceptions
               use Rack::Lint
+              
+              if config["Usage"] == "yes"
+                use Rack::Auth::Basic, "Protected Area" do |username, password|
+                  username == config["Username"] && password == config["Password"]
+                end
+              end
+                         
               run Rack::Blogengine::Application
             end
 
-            
-            port = config["Port"];
-            server = config["Server"];
-            Rack::Server.start( :app => app, :Port => port, :server => server )
+            Rack::Server.start( :app => app, :Port => config["Port"], :server => config["Server"] )
           else
             puts "Target is not a folder!"
           end
         else 
           puts "Specify a targetfolder!"
         end
+      end
+
+      # Get YAML Config settings for Server.start && HTTPauth
+      def getConfig(target)
+        configYAML = YAML::load(::File.open("#{target}/config.yml"))
+
+        port = configYAML["Port"]
+        server = configYAML["Server"]
+        username = configYAML["HTTPauth"]["username"].to_s.strip
+        password = configYAML["HTTPauth"]["password"].to_s.strip
+        usage = configYAML["HTTPauth"]["usage"]
+
+        config = {"Port" => port, "Server" => server, "Username" => username, "Password" => password, "Usage" => usage}
       end
 
       # Command to generate the folder skeleton
