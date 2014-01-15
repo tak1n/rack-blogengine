@@ -11,6 +11,8 @@ module Rack
         header = {"Content-Type" => "text/html; charset=UTF-8"}
         path = env["PATH_INFO"]
 
+        # TODO: dont parse all docs on every request -> doc cache (maybe parse at rack-blogengine run)
+        # for fasten up accessing eg contentoperator in layout.html which has faraday request -> too big load times on every request!!!
         documents = DocParser.parseInDocuments(target)
        
            
