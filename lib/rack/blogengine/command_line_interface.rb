@@ -4,6 +4,11 @@ require 'yaml'
 
 module Rack
   module Blogengine
+    # 
+    # This Class handles all cli input (running the app, generate folder skeleton)
+    # 
+    # @author [benny]
+    # 
     class CommandLineInterface
       def method_missing(name, *args)
         puts "Command #{name} not available"
