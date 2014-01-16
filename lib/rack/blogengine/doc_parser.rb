@@ -1,5 +1,13 @@
 module Rack
   module Blogengine
+    # 
+    # Prepares the documents for the response
+    # Reads in layout.html and .content file -> merged html
+    # Sort documents by date
+    # Execute Content Operator after all documents has been parsed in
+    # 
+    # @author [benny]
+    # 
     class DocParser
       # Parse in .content Documents.
       # @param target.
