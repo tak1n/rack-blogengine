@@ -1,7 +1,11 @@
 module Rack
   module Blogengine
+    # 
+    # ApplicationRouter routes the request to the proper, parsed .content (layout.html + .content) file
+    # 
+    # @author [benny]
+    # 
     class ApplicationRouter
-
       # Maps documents to routes.
       # @param env Env Contains path info etc...
       # @param target Target folder
