@@ -1,5 +1,11 @@
 module Rack
   module Blogengine
+    # 
+    # Application is the callable middleware class
+    # run Rack::Blogengine::Application
+    # 
+    # @author [benny]
+    # 
     class Application
       # Call Method for run this method as Rack Middleware.
       # @param env Environment contains information such as path, headers etc...
