@@ -1,3 +1,9 @@
+# 
+# Operator Class loads in UserOperators on initialize
+# Methods defined in this Class are "Default Operators"
+# 
+# @author [benny]
+# 
 class Operator
   def initialize(target)
     Dir.foreach("#{target}/operator/") do |item|
