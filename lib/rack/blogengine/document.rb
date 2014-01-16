@@ -1,5 +1,11 @@
 module Rack
   module Blogengine
+    # 
+    # Document Class
+    # Contains attributes path, html, title, date
+    # 
+    # @author [benny]
+    # 
     class Document
       attr_accessor :path, :html, :title, :date
 
