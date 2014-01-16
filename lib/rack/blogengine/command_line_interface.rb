@@ -97,12 +97,11 @@ module Rack
         puts "\tTo test it type rack-blogengine run #{folder}"
       end
 
-      
-
       # Display Version
       # return [String] VERSION
       def version?
         puts Rack::Blogengine::VERSION
+        puts "Rack::Blogengine releases are all pre-relases, first production release will be VERSION 1.0.0"
       end
 
       private
