@@ -100,8 +100,8 @@ module Rack
       # Display Version
       # return [String] VERSION
       def version?
-        puts Rack::Blogengine::VERSION
-        puts "Rack::Blogengine releases are all pre-relases, first production release will be VERSION 1.0.0"
+        puts "\n\tVERSION: #{Rack::Blogengine::VERSION}"
+        puts "\tRack::Blogengine releases are all pre-relases, first production release will be VERSION 1.0.0\n\n"
       end
 
       private
