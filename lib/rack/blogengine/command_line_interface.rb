@@ -31,12 +31,12 @@ module Rack
           if Dir.exists?("#{target}")
             system("cd #{target}")
 
-            $targetfolder = "#{Dir.pwd}/#{target}"
-            config = getConfig($targetfolder)
+            targetfolder = "#{Dir.pwd}/#{target}"
+            config = getConfig(targetfolder)
 
             app = Rack::Builder.new do
               map "/assets" do
-                run Rack::Directory.new("#{$targetfolder}/assets")
+                run Rack::Directory.new("#{targetfolder}/assets")
               end
 
               use Rack::CommonLogger
@@ -48,7 +48,11 @@ module Rack
                   username == config["Username"] && password == config["Password"]
                 end
               end
-                         
+
+              # Parse in all Documents in cli.run(target) 
+              # -> $documents are parsed in only once and then cached via a global variable
+              $documents = DocParser.parseInDocuments(targetfolder)
+
               run Rack::Blogengine::Application
             end
 
