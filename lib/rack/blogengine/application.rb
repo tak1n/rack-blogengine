@@ -12,7 +12,7 @@ module Rack
       # @return [Array] response Array
       def self.call(env)
         # Router for map docs to routes
-        route = ApplicationRouter.map_route(env, $targetfolder) 
+        route = ApplicationRouter.map_route(env, $documents) 
         if route  
           return route["response"] 
         else
