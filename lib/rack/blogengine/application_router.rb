@@ -10,21 +10,16 @@ module Rack
       # @param env Env Contains path info etc...
       # @param target Target folder
       # @return [Hash] route Hash {:path => "/foo", :response => [Array]}
-      def self.map_route(env, target)
+      def self.map_route(env, documents)
         status = 200
         header = {"Content-Type" => "text/html; charset=UTF-8"}
         path = env["PATH_INFO"]
-
-        # TODO: dont parse all docs on every request -> doc cache (maybe parse at rack-blogengine run)
-        # for fasten up accessing eg contentoperator in layout.html which has faraday request -> too big load times on every request!!!
-        documents = DocParser.parseInDocuments(target)
-       
            
         # Iterate through available docs, if nothing matched return nil
         documents.each do |doc|
           if doc[:path] == path
             route_response = {
-              "route" => path,
+              "path" => path,
               "response" => [status, header, [doc[:html]] ]
             }
 
