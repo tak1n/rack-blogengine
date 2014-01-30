@@ -8,7 +8,7 @@ module Rack
     class ApplicationRouter
       # Maps documents to routes.
       # @param env Env Contains path info etc...
-      # @param target Target folder
+      # @param documents Documents which will be looked at
       # @return [Hash] route Hash {:path => "/foo", :response => [Array]}
       def self.map_route(env, documents)
         status = 200
