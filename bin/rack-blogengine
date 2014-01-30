@@ -1,5 +1,5 @@
 #!/usr/bin/env ruby
-require 'rack/blogengine/command_line_interface' 
+require 'rack/blogengine' 
 
 if ARGV[0]
   command = ARGV[0].to_sym
