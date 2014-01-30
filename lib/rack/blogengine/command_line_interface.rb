@@ -118,7 +118,8 @@ module Rack
         puts "\tSet up #{path}/#{name}\n"
         system("touch #{path}/#{name}")
         if essential
-          content = IO.read("#{::File.dirname(__FILE__)}/files/#{name}")
+          assetspath = "#{Rack::Blogengine.root}/assets/#{name}"
+          content = IO.read(assetspath)
           ::File.open("#{path}/#{name}", 'w') { |file| file.write(content) }
         end
       end
