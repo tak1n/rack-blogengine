@@ -6,7 +6,10 @@ require "rack/blogengine/application_router"
 require "rack/blogengine/operator"
 
 module Rack
-  module Blogengine  
+  module Blogengine
+    def self.root
+      ::File.dirname(::File.expand_path('../..',__FILE__))
+    end
   end
 end
 
