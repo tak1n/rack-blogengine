@@ -10,7 +10,7 @@ Gem::Specification.new do |spec|
   spec.email         = ["klotz.benjamin@yahoo.de"]
   spec.description   = %q{Blogengine based on rack applications}
   spec.summary       = "#{spec.description}"
-  spec.homepage      = ""
+  spec.homepage      = "http://www.bennyklotz.at"
   spec.license       = "MIT"
 
   spec.files         = `git ls-files`.split($/)
@@ -21,7 +21,8 @@ Gem::Specification.new do |spec|
   spec.add_development_dependency "bundler", "~> 1.3"
   spec.add_development_dependency "rake"
   spec.add_development_dependency "rspec", ">= 2.0.0"
-  spec.add_development_dependency "minitest", "~> 4.7.3"
+  #bundlspec.add_development_dependency "minitest", "~> 4.7.3"
+  spec.add_development_dependency "test-unit"
 
   spec.add_runtime_dependency "rack"
 end
