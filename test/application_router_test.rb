@@ -1,4 +1,4 @@
-require_relative 'test_helper.rb'
+require 'test_helper.rb'
 
 class ApplicationRouterTest < Test::Unit::TestCase
   def setup
