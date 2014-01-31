@@ -28,7 +28,7 @@ module Rack
   					
           @document = Document.new
           @document.path = @path
-          @document.html = @html
+          @document.html = @html.gsub(/\s+/, ' ').strip
           @document.title = @title
           @document.date = @date
 
