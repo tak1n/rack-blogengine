@@ -8,3 +8,5 @@ namespace :test do
     t.verbose = true
   end
 end
+
+task :default => :test:unit
