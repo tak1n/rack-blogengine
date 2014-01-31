@@ -2,6 +2,10 @@
 
 Rack Middleware to serve a simple blog
 
+## Build status
+
+[![Build Status](https://travis-ci.org/Benny1992/rack-blogengine.png?branch=master)](https://travis-ci.org/Benny1992/rack-blogengine)
+
 ## Installation
 
     $ gem install rack-blogengine
