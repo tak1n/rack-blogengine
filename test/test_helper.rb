@@ -14,6 +14,10 @@ require 'rack/blogengine'
 # rake install in gem dir and then
 # require 'mygem'
 
+def testpath
+ return "#{Rack::Blogengine.root}/testfolder"
+end
+
 def capture_stdout(&block)
   original_stdout = $stdout
   $stdout = fake = StringIO.new
@@ -26,6 +30,4 @@ def capture_stdout(&block)
 end
 
 cli = Rack::Blogengine::CommandLineInterface.new
-
-@testpath = "testfolder"
-capture_stdout { cli.generate(@testpath) }
+capture_stdout { cli.generate(testpath) }

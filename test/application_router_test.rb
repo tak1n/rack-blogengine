@@ -2,11 +2,12 @@ require_relative 'test_helper.rb'
 
 class ApplicationRouterTest < Test::Unit::TestCase
   def setup
-  	puts "\n Class: #{self.class.superclass}"
+  	puts "Path is: #{testpath}"
+  	@document = Rack::Blogengine::DocParser.parseInDocuments(testpath)
   end
 
   def test_map_route
-  	omit("Pending")
+  	puts @document
   end
 
   def teardown
