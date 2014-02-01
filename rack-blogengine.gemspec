@@ -23,6 +23,7 @@ Gem::Specification.new do |spec|
   spec.add_development_dependency "rspec", ">= 2.0.0"
   spec.add_development_dependency "test-unit"
   spec.add_development_dependency "test-unit-notify"
+  spec.add_development_dependency "rack-test"
 
   spec.add_runtime_dependency "rack"
 end
