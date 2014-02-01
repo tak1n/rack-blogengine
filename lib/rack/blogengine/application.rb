@@ -12,13 +12,9 @@ module Rack
       # @return [Array] response Array
       def self.call(env)
         # Router for map docs to routes
-        route = ApplicationRouter.map_route(env, $documents) 
-        if route  
-          return route["response"] 
-        else
-          #TODO Errorpage handling
-          return [404, {"Content-Type" => "text/html; charset=UTF-8"}, ["Page not found"]] 
-        end 
+        route = ApplicationRouter.map_route(env, $documents)
+         
+        return route["response"] 
       end                
     end
   end

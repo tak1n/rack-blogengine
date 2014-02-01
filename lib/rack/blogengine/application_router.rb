@@ -11,7 +11,7 @@ module Rack
       # @param documents Documents which will be looked at
       # @return [Hash] route Hash {:path => "/foo", :response => [Array]}
       def self.map_route(env, documents)
-        status = 200
+        success_status = 200
         header = {"Content-Type" => "text/html; charset=UTF-8"}
         path = env["PATH_INFO"]
            
@@ -20,14 +20,17 @@ module Rack
           if doc[:path] == path
             route_response = {
               "path" => path,
-              "response" => [status, header, [doc[:html]] ]
+              "response" => [success_status, header, [doc[:html]] ]
             }
 
             return route_response
           end
         end
 
-        return nil
+        return { 
+          "path" => "/error",
+          "response" => [404, {"Content-Type" => "text/html; charset=UTF-8"}, ["Page not found && no error page found"]]
+        }
       end
     end
   end
