@@ -4,6 +4,7 @@ class ApplicationRouterTest < Test::Unit::TestCase
   include Rack::Test::Methods
 
   def setup
+    #TODO Use Fake Data - Don't generate a whole testfolder....
     cli = Rack::Blogengine::CommandLineInterface.new
     capture_stdout { cli.generate(testpath) }
 
