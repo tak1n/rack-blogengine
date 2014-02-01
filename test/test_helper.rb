@@ -45,6 +45,3 @@ def capture_stdout(&block)
   end
   fake.string
 end
-
-cli = Rack::Blogengine::CommandLineInterface.new
-capture_stdout { cli.generate(testpath) }
