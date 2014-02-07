@@ -6,6 +6,14 @@ Rack Middleware to serve a simple blog
 
 [![Build Status](https://travis-ci.org/Benny1992/rack-blogengine.png?branch=master)](https://travis-ci.org/Benny1992/rack-blogengine)
 
+## Supported Ruby Versions & Platforms
+
+- rbx 2.2.4
+- ruby 1.9.3
+- ruby 2.0.0
+- ruby 2.1.0
+- jruby 1.7.9
+
 ## Installation
 
     $ gem install rack-blogengine
