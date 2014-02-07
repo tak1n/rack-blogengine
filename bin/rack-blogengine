@@ -1,18 +1,18 @@
 #!/usr/bin/env ruby
-require 'rack/blogengine' 
+require 'rack/blogengine'
 
 if ARGV[0]
   command = ARGV[0].to_sym
 else
-  command = "".to_sym
+  command = ''.to_sym
 end
 
 target = ARGV[1]
-target = "" if !ARGV[1]
+target = '' unless ARGV[1]
 
 cli = Rack::Blogengine::CommandLineInterface.new
 
-if target != ""
+if target != ''
   cli.send(command, target)
 else
   cli.send(command)

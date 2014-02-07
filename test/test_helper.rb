@@ -1,13 +1,11 @@
 # Minitest
-#require 'minitest/autorun'
-#require 'minitest/pride' # for colored output
-#require "test_notifier/runner/minitest"
+# require 'minitest/autorun'
+# require 'minitest/pride' # for colored output
+# require "test_notifier/runner/minitest"
 
 # Real TestUnit
 require 'test/unit'
 require 'test/unit/notify'
-
-
 require 'rack/blogengine'
 require 'rack/test'
 
@@ -16,24 +14,28 @@ require 'rack/test'
 # require 'mygem'
 
 # class Hash
-  # method for usage with assert_boolean 
+  # method for usage with assert_boolean
   # -> for failing it needs nil instead of false (which #has_key? returns in failing case)
   # NOT Needed use assert_true instead...
   # def hash_key?(key)
   #   if self.has_key?(key)
   #	    return true
-  #	  else 
+  #	  else
   #	    return nil
   #	  end
   # end
 # end
 
+#
+# Opening Core Class Object for testpath method
+#
+# @author [benny]
+#
 class Object
   def testpath
-    return "#{Rack::Blogengine.root}/testfolder"
+    "#{Rack::Blogengine.root}/testfolder"
   end
 end
-
 
 def capture_stdout(&block)
   original_stdout = $stdout
