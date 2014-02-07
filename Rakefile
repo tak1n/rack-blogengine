@@ -1,6 +1,5 @@
 require "bundler/gem_tasks"
 require 'rake/testtask'
-require 'rubocop/rake_task'
 
 namespace :test do
   Rake::TestTask.new(:unit) do |t|
