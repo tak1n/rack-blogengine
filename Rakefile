@@ -8,8 +8,6 @@ namespace :test do
     t.test_files = FileList['test/*_test.rb']
     t.verbose = true
   end
-
-  Rubocop::RakeTask.new(:style)
 end
 
 task :default => 'test:unit'
