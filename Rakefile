@@ -1,5 +1,6 @@
 require "bundler/gem_tasks"
 require 'rake/testtask'
+require 'rubocop/rake_task'
 
 namespace :test do
   Rake::TestTask.new(:unit) do |t|
@@ -7,6 +8,8 @@ namespace :test do
     t.test_files = FileList['test/*_test.rb']
     t.verbose = true
   end
+
+  Rubocop::RakeTask.new(:style)
 end
 
 task :default => 'test:unit'
