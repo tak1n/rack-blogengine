@@ -5,7 +5,7 @@ require 'test_helper.rb'
 #
 # @author [benny]
 #
-class ApplicationRouterTest < Test::Unit::TestCase
+class ApplicationRouterTest < MiniTest::Unit::TestCase
   include Rack::Test::Methods
 
   def setup
@@ -25,8 +25,8 @@ class ApplicationRouterTest < Test::Unit::TestCase
     assert_equal(Hash, @route_success.class, 'Route should be a hash')
 
     # Check Hash keys
-    assert_true(@route_success.key?('path'), 'Route should contain a path')
-    assert_true(@route_success.key?('response'), 'Route should contain a response')
+    assert(@route_success.key?('path'), 'Route should contain a path')
+    assert(@route_success.key?('response'), 'Route should contain a response')
 
     # Check path
     assert_equal(String, @route_success['path'].class, 'Path should be a string')

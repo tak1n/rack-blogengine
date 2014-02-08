@@ -1,11 +1,14 @@
 # Minitest
+require 'minitest/unit'
+require 'minitest/autorun'
 # require 'minitest/autorun'
 # require 'minitest/pride' # for colored output
 # require "test_notifier/runner/minitest"
 
-# Real TestUnit
-require 'test/unit'
-require 'test/unit/notify'
+# TestUnit -> MiniTest (TestUnit is only compatibility Layer)
+# require 'test/unit'
+
+# Load Rack::Blogengine && Rack::Test
 require 'rack/blogengine'
 require 'rack/test'
 

@@ -5,7 +5,7 @@ require 'test_helper.rb'
 #
 # @author [benny]
 #
-class DocumentTest < Test::Unit::TestCase
+class DocumentTest < MiniTest::Unit::TestCase
   def setup
     @document = Rack::Blogengine::Document.new
 
@@ -24,8 +24,7 @@ class DocumentTest < Test::Unit::TestCase
 
   def test_document_to_hash
     hashed = @document.to_hash
-
-    assert_true(hashed.key?(:path), 'Hashed Document should contain the path')
-    assert_true(hashed.key?(:html), 'Hashed Document should contain parsed html')
+    assert(hashed.key?(:path), 'Hashed Document should contain the path')
+    assert(hashed.key?(:html), 'Hashed Document should contain parsed html')
   end
 end
