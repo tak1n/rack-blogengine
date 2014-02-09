@@ -1,9 +1,8 @@
 # Minitest
 require 'minitest/unit'
 require 'minitest/autorun'
-# require 'minitest/autorun'
 # require 'minitest/pride' # for colored output
-# require "test_notifier/runner/minitest"
+# require "test_notifier/runner/minitest" for a notifier
 
 # TestUnit -> MiniTest (TestUnit is only compatibility Layer)
 # require 'test/unit'
