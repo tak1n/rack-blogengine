@@ -15,6 +15,10 @@ class DocumentTest < MiniTest::Unit::TestCase
     @document.html = '<html><h1>Test</h1></html>'
   end
 
+  def test_new_document
+    assert_equal(Rack::Blogengine::Document, @document.class, 'A new Document should be a object of class Rack::Blogengine::Document')
+  end
+
   def test_document_has_content
     assert_equal('testtitle', @document.title, 'Document should contain the testtitle')
     assert_equal('/test', @document.path, 'Document should contain the test path')
