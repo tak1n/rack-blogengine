@@ -11,10 +11,6 @@ require 'minitest/autorun'
 require 'rack/blogengine'
 require 'rack/test'
 
-# alternative to require_relative
-# rake install in gem dir and then
-# require 'mygem'
-
 # class Hash
   # method for usage with assert_boolean
   # -> for failing it needs nil instead of false (which #has_key? returns in failing case)
