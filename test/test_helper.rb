@@ -7,9 +7,8 @@ require 'minitest/autorun'
 # TestUnit -> MiniTest (TestUnit is only compatibility Layer)
 # require 'test/unit'
 
-# Load Rack::Blogengine && Rack::Test
+# Load Rack::Blogengine gem
 require 'rack/blogengine'
-require 'rack/test'
 
 # class Hash
   # method for usage with assert_boolean
