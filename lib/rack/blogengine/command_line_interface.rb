@@ -52,9 +52,9 @@ module Rack
 
               # Parse in all Documents in cli.run(target)
               # -> $documents are parsed in only once and then cached via a global variable
-              $documents = DocParser.parse_in_documents(targetfolder)
+              $documents = DocumentParser.parse_in_documents(targetfolder)
 
-              run Rack::Blogengine::Application
+              run Application
             end
 
             Rack::Server.start(app: app, Port: config['Port'], server: config['Server'])

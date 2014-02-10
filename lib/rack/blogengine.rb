@@ -1,5 +1,5 @@
 require 'rack/blogengine/version'
-require 'rack/blogengine/doc_parser'
+require 'rack/blogengine/document_parser'
 require 'rack/blogengine/document'
 require 'rack/blogengine/application'
 require 'rack/blogengine/application_router'
