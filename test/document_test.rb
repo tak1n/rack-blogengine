@@ -16,7 +16,7 @@ class DocumentTest < MiniTest::Unit::TestCase
   end
 
   def test_new_document
-    assert_equal(Rack::Blogengine::Document, @document.class, 'A new Document should be a object of class Rack::Blogengine::Document')
+    assert_equal(Rack::Blogengine::Document, @document.class, 'Document should be of class Rack::Blogengine::Document')
   end
 
   def test_document_has_content
