@@ -29,11 +29,11 @@ require 'rack/test'
 # end
 
 #
-# Opening Core Class Object for testpath method
+# Opening Kernel for testpath method
 #
 # @author [benny]
 #
-class Object
+module Kernel
   def testpath
     "#{Rack::Blogengine.root}/testfolder"
   end
