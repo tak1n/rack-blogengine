@@ -9,11 +9,10 @@ class ApplicationRouterTest < MiniTest::Unit::TestCase
   include Rack::Test::Methods
 
   def setup
-    # TODO: Use Fake Data - Don't generate a whole testfolder....
-    cli = Rack::Blogengine::CommandLineInterface.new
-    capture_stdout { cli.generate(testpath) }
+    # fake document
+    documents = [{ :html => "<!DOCTYPE html><body><h2>This is the Index Page</h2></body></html>", 
+                   :path=>"/"}]
 
-    documents = Rack::Blogengine::DocParser.parse_in_documents(testpath)
     env_fail = { 'PATH_INFO' => '/fail' }
     env_success = { 'PATH_INFO' => '/' }
 
@@ -45,6 +44,6 @@ class ApplicationRouterTest < MiniTest::Unit::TestCase
   end
 
   def teardown
-    system("rm -rf #{testpath}")
+  
   end
 end
