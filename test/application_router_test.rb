@@ -8,8 +8,8 @@ require 'test_helper.rb'
 class ApplicationRouterTest < MiniTest::Unit::TestCase
   def setup
     # fake document
-    documents = [{ :html => "<!DOCTYPE html><body><h2>This is the Index Page</h2></body></html>", 
-                   :path=>"/"}]
+    documents = [{ html: '<!DOCTYPE html><body><h2>This is the Index Page</h2></body></html>',
+                   path: '/' }]
 
     env_fail = { 'PATH_INFO' => '/fail' }
     env_success = { 'PATH_INFO' => '/' }
@@ -42,6 +42,5 @@ class ApplicationRouterTest < MiniTest::Unit::TestCase
   end
 
   def teardown
-  
   end
 end
