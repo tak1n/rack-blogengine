@@ -5,7 +5,7 @@ module Rack
     #
     # @author [benny]
     #
-    class ApplicationRouter
+    module ApplicationRouter
       # Maps documents to routes.
       # @param env Env Contains path info etc...
       # @param documents Documents which will be looked at

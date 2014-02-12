@@ -8,7 +8,7 @@ module Rack
     #
     # @author [benny]
     #
-    class DocumentParser
+    module DocumentParser
       # Parse in .content Documents.
       # @param target.
       # @return [Hash] Documents
@@ -24,7 +24,7 @@ module Rack
           next if item == '.' || item == '..' || extension != 'content'
 
           get_file_contents(item)
-          @html = fill_file_contents(@layout)
+          @html = fill_file_contents(@layout, @title, @content, @date)
 
           @document = Document.new
           @document.path = @path
@@ -92,13 +92,16 @@ module Rack
 
       # Replace layout placeholder with content from .content file
       # @param [String] layout
+      # @param [String] title
+      # @param [String] content
+      # @param [Date]   date
       # return [String] html placeholder replaced with content
-      def self.fill_file_contents(layout)
+      def self.fill_file_contents(layout, title, content, date)
         html = layout.dup
 
-        html.gsub! '{title}', @title
-        html['{content}'] = @content
-        html.gsub! '{date}', @date.strftime('%d.%m.%Y')
+        html.gsub! '{title}', title
+        html['{content}'] = content
+        html.gsub! '{date}', date.strftime('%d.%m.%Y')
       end
 
       # Sort documents array by date of each documenthash
