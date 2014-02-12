@@ -52,6 +52,7 @@ module Rack
 
               # Parse in all Documents in cli.run(target)
               # -> $documents are parsed in only once and then cached via a global variable
+              # Todo Cache without global variable?
               $documents = DocumentParser.parse_in_documents(targetfolder)
 
               run Application
