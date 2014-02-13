@@ -6,7 +6,7 @@ require 'test_helper.rb'
 # @author [benny]
 #
 class ApplicationRouterTest < MiniTest::Unit::TestCase
-  parallelize_me!()
+  #parallelize_me!
   
   def setup
     # fake document

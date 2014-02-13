@@ -6,7 +6,7 @@ require 'test_helper.rb'
 # @author [benny]
 #
 class DocumentTest < MiniTest::Unit::TestCase
-  parallelize_me!() # Run Tests parallel
+  # parallelize_me!() # Run Tests parallel
   # Nice comment: In doing so, you’re admitting that you rule and your tests are awesome.
 
   def setup
