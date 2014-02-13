@@ -1,5 +1,4 @@
 # Minitest
-require 'minitest/unit'
 require 'minitest/autorun'
 # require 'minitest/pride' # for colored output
 # require 'test_notifier/runner/minitest' # for a notifier

@@ -6,6 +6,8 @@ require 'test_helper.rb'
 # @author [benny]
 #
 class ApplicationRouterTest < MiniTest::Unit::TestCase
+  parallelize_me!()
+  
   def setup
     # fake document
     documents = [{ html: '<!DOCTYPE html><body><h2>This is the Index Page</h2></body></html>',
@@ -19,18 +21,18 @@ class ApplicationRouterTest < MiniTest::Unit::TestCase
   end
 
   def test_map_route_general
-    assert_equal(Hash, @route_success.class, 'Route should be a hash')
+    assert_instance_of(Hash, @route_success, 'Route should be a hash')
 
     # Check Hash keys
     assert(@route_success.key?('path'), 'Route should contain a path')
     assert(@route_success.key?('response'), 'Route should contain a response')
 
     # Check path
-    assert_equal(String, @route_success['path'].class, 'Path should be a string')
+    assert_instance_of(String, @route_success['path'], 'Path should be a string')
 
     # Check response
-    assert_equal(Array, @route_success['response'].class, 'Response should be an Array')
-    assert_equal(Fixnum, @route_success['response'][0].class, 'Status should be a Fixnum')
+    assert_instance_of(Array, @route_success['response'], 'Response should be an Array')
+    assert_instance_of(Fixnum, @route_success['response'][0], 'Status should be a Fixnum')
   end
 
   def test_map_route_on_success

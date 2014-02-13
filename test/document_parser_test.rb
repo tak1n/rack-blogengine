@@ -6,6 +6,8 @@ require 'test_helper'
 # @author [benny]
 #
 class DocumentParserTest < MiniTest::Unit::TestCase
+  #parallelize_me!()
+
   def setup
     cli = Rack::Blogengine::CommandLineInterface.new
     capture_stdout { cli.generate(testpath) }

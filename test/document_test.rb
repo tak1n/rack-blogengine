@@ -6,6 +6,9 @@ require 'test_helper.rb'
 # @author [benny]
 #
 class DocumentTest < MiniTest::Unit::TestCase
+  parallelize_me!() # Run Tests parallel
+  # Nice comment: In doing so, you’re admitting that you rule and your tests are awesome.
+
   def setup
     @document = Rack::Blogengine::Document.new
 
@@ -16,7 +19,7 @@ class DocumentTest < MiniTest::Unit::TestCase
   end
 
   def test_new_document
-    assert_equal(Rack::Blogengine::Document, @document.class, 'Document should be of class Rack::Blogengine::Document')
+    assert_instance_of(Rack::Blogengine::Document, @document, 'Document should be of class Rack::Blogengine::Document')
   end
 
   def test_document_has_content
