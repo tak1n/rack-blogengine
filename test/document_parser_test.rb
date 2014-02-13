@@ -38,6 +38,10 @@ class DocumentParserTest < MiniTest::Unit::TestCase
     assert(html.include?(date.strftime('%d.%m.%Y')), 'Parsed and filled in HTML should contain Date')
   end
 
+  def test_get_file_contents
+    skip   
+  end
+
   def teardown
     system("rm -rf #{testpath}")
   end
