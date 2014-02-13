@@ -1,6 +1,5 @@
 require "bundler/gem_tasks"
 require 'rake/testtask'
-require 'rspec/core/rake_task'
 
 
 
@@ -11,7 +10,11 @@ namespace :test do
     t.verbose = true
   end
 
-  RSpec::Core::RakeTask.new(:spec)
+  Rake::TestTask.new(:spec) do |t|
+    t.libs << "spec"
+    t.test_files = FileList['spec/spec_*.rb']
+    t.verbose = true
+  end
 end
 
 task :default => 'test:unit'
