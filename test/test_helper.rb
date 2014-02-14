@@ -6,6 +6,9 @@ require 'minitest/autorun'
 # TestUnit -> MiniTest (TestUnit is only compatibility Layer)
 # require 'test/unit'
 
+require 'coveralls'
+Coveralls.wear!
+
 # Load Rack::Blogengine gem
 require 'rack/blogengine'
 
