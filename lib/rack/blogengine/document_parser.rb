@@ -9,6 +9,10 @@ module Rack
     # @author [benny]
     #
     module DocumentParser
+      class << self
+        attr_accessor :title, :content, :date
+      end
+
       # Parse in .content Documents.
       # @param target.
       # @return [Hash] Documents
@@ -54,13 +58,7 @@ module Rack
         content_file = ::File.open("#{@target}/#{file}")
         content = content_file.read
 
-        # Replace Closing tags
-        content['/path'] = '/close'
-        content['/title'] = '/close'
-        content['/content'] = '/close'
-        content['/date'] = '/close'
-
-        contentarray = content.split('[/close]')
+        contentarray = get_content_array(content)
 
         contentarray.each do |contentblock|
           if contentblock.include? '[path]:'
@@ -88,6 +86,16 @@ module Rack
             @date = Date.new(datearray[0], datearray[1], datearray[2])
           end
         end
+      end
+
+      def self.get_content_array(content)
+        # Replace Closing tags
+        content['/path'] = '/close'
+        content['/title'] = '/close'
+        content['/content'] = '/close'
+        content['/date'] = '/close'
+
+        contentarray = content.split('[/close]')
       end
 
       # Replace layout placeholder with content from .content file
