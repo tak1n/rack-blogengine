@@ -41,7 +41,15 @@ class DocumentParserTest < MiniTest::Unit::TestCase
   end
 
   def test_get_file_contents
-    skip   
+    Rack::Blogengine::DocumentParser.title = ''
+    Rack::Blogengine::DocumentParser.content = ''
+    Rack::Blogengine::DocumentParser.date = ''
+
+    Rack::Blogengine::DocumentParser.get_file_contents('index.content')
+
+    assert_equal('INDEX', Rack::Blogengine::DocumentParser.title, 'Parsed in Title should eql Title in test .content file')
+    assert_equal('<h2>This is the Index Page</h2>', Rack::Blogengine::DocumentParser.content, 'Parsed in Content should eql Content in test .content file')
+    assert_instance_of(Date, Rack::Blogengine::DocumentParser.date, 'Parsed in Date should be of Class Date')
   end
 
   def teardown
