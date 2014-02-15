@@ -52,6 +52,22 @@ class DocumentParserTest < MiniTest::Unit::TestCase
     assert_instance_of(Date, Rack::Blogengine::DocumentParser.date, 'Parsed in Date should be of Class Date')
   end
 
+  def test_get_content_array
+    content = "[path]:[/path]
+               [title]:INDEX[/title]
+               [date]:2013,01,01[/date]
+               [content]:
+               <h2>This is the Index Page</h2>
+               [/content]"
+    contentarray = Rack::Blogengine::DocumentParser.get_content_array(content)
+
+    assert_equal(4, contentarray.length, "The content Array should contain 4 members (Path, Title, Date, Content)")
+    assert(contentarray[0].include?("path"), "First Entry should contain the path")
+    assert(contentarray[1].include?("title"), "Second Entry should contain the title")
+    assert(contentarray[2].include?("date"), "Third Entry should contain the date")
+    assert(contentarray[3].include?("content"), "Fourth Entry should contain the content")
+  end
+
   def teardown
     system("rm -rf #{testpath}")
   end
