@@ -34,4 +34,18 @@ class DocumentTest < MiniTest::Unit::TestCase
     assert(hashed.key?(:path), 'Hashed Document should contain the path')
     assert(hashed.key?(:html), 'Hashed Document should contain parsed html')
   end
+
+  def test_exec_content_operator
+    cli = Rack::Blogengine::CommandLineInterface.new
+    capture_stdout { cli.generate(testpath) }
+
+    document = Rack::Blogengine::Document.new
+    document.html = "{% test_operator %}"
+    
+    document.exec_content_operator(document, testpath)
+    
+    assert_equal("test", document.html, 'Documents html should contain test_operators return value')
+
+    system("rm -rf #{testpath}")
+  end
 end
