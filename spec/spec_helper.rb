@@ -21,14 +21,14 @@
 # end
 # =================================
 
+require 'coveralls'
+Coveralls.wear!
+
 # Minitest
 require 'minitest/autorun'
 
 # Load Rack::Blogengine gem
 require 'rack/blogengine'
-
-require 'coveralls'
-Coveralls.wear!
 
 #
 # Opening Kernel for testpath method
