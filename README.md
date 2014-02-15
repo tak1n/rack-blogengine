@@ -6,6 +6,7 @@ Rack Middleware to serve a simple blog
 
 [![Build Status](https://travis-ci.org/Benny1992/rack-blogengine.png?branch=master)](https://travis-ci.org/Benny1992/rack-blogengine)
 [![Coverage Status](https://coveralls.io/repos/Benny1992/rack-blogengine/badge.png)](https://coveralls.io/r/Benny1992/rack-blogengine)
+[![Gem Version](https://badge.fury.io/rb/rack-blogengine.png)](http://badge.fury.io/rb/rack-blogengine)
 
 ## Supported Ruby Versions & Platforms
 
