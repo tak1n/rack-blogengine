@@ -15,6 +15,7 @@ class DocumentParserTest < MiniTest::Unit::TestCase
     @documents = Rack::Blogengine::DocumentParser.parse_in_documents(testpath)
   end
 
+  # Test DocumentParser.parse_in_documents(path)
   def test_parse_in_documents
     @documents.each do |document|
       # Check Hash keys
@@ -23,9 +24,7 @@ class DocumentParserTest < MiniTest::Unit::TestCase
     end
   end
 
-  # Single Test method for each class method in document_parser.rb ?
-  # parse_in_documents calls other class methods so when something is wrong with other class method
-  # test_parse_in_documents will fail => so for now only 1 test here
+  # Test DocumentParser.fill_file_contents(layout, title, content, date)
   def test_fill_file_contents
     layout_file = ::File.open("#{testpath}/assets/layout/layout.html", 'r')
     layout = layout_file.read
@@ -40,6 +39,7 @@ class DocumentParserTest < MiniTest::Unit::TestCase
     assert(html.include?(date.strftime('%d.%m.%Y')), 'Parsed and filled in HTML should contain Date')
   end
 
+  # Test DocumentParser.get_file_contents('file.content')
   def test_get_file_contents
     Rack::Blogengine::DocumentParser.title = ''
     Rack::Blogengine::DocumentParser.content = ''
@@ -52,6 +52,8 @@ class DocumentParserTest < MiniTest::Unit::TestCase
     assert_instance_of(Date, Rack::Blogengine::DocumentParser.date, 'Parsed in Date should be of Class Date')
   end
 
+  # Test DocumentParser.get_content_array(contentstring)
+  # Should split up the content for each content section (Path, Title, Date, Content)
   def test_get_content_array
     content = "[path]:[/path]
                [title]:INDEX[/title]

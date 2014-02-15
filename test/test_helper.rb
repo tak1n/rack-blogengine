@@ -1,3 +1,8 @@
+require 'coveralls'
+Coveralls.wear!
+
+# Previous content of test helper now starts here
+
 # Minitest
 require 'minitest/autorun'
 # require 'minitest/pride' # for colored output
@@ -5,9 +10,6 @@ require 'minitest/autorun'
 
 # TestUnit -> MiniTest (TestUnit is only compatibility Layer)
 # require 'test/unit'
-
-require 'coveralls'
-Coveralls.wear!
 
 # Load Rack::Blogengine gem
 require 'rack/blogengine'
