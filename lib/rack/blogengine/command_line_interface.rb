@@ -22,7 +22,7 @@ module Rack
       # @param [String] target
       def run(target)
         if target.empty?
-          puts 'Specify a targetfolder!'
+          print 'Specify a targetfolder!'
         else
           if target.include?('/')
             target = target.dup
@@ -61,7 +61,7 @@ module Rack
 
             Rack::Server.start(app: app, Port: config['Port'], server: config['Server'])
           else
-            puts 'Target is not a folder!'
+            print 'Target is not a folder!'
           end
         end
       end
@@ -105,8 +105,7 @@ module Rack
       # Display Version
       # return [String] VERSION
       def version?
-        puts "\n\tVERSION: #{Rack::Blogengine::VERSION}"
-        puts "\tRack::Blogengine releases are all pre-relases, first production release will be VERSION 1.0.0\n\n"
+        puts "\n\tVERSION: #{Rack::Blogengine::VERSION}\n\tRack::Blogengine releases are all pre-relases, first production release will be VERSION 1.0.0\n\n"
       end
 
       private
