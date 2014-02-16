@@ -9,7 +9,7 @@ class Operator
     Dir.foreach("#{target}/operator/") do |item|
       extension = item.split('.')[1]
       next if item == '.' || item == '..' || extension != 'rb'
-      require "#{target}/operator/#{item}"
+      require "#{Dir.pwd}/#{target}/operator/#{item}"
     end
 
     extend UserOperator # load user operators

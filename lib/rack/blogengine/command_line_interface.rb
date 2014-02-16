@@ -24,20 +24,13 @@ module Rack
         if target.empty?
           print 'Specify a targetfolder!'
         else
-          if target.include?('/')
-            target = target.dup
-            target['/'] = ''
-          end
-
           if Dir.exists?("#{target}")
             system("cd #{target}")
-
-            targetfolder = "#{Dir.pwd}/#{target}"
-            config = get_config(targetfolder)
+            config = get_config(target)
 
             app = Rack::Builder.new do
               map '/assets' do
-                run Rack::Directory.new("#{targetfolder}/assets")
+                run Rack::Directory.new("#{target}/assets")
               end
 
               use Rack::CommonLogger
@@ -54,7 +47,7 @@ module Rack
               # -> $documents are parsed in only once and then cached via a global variable
               # Todo Cache without global variable?
               # Global Variable replaced with module instance variable
-              Rack::Blogengine.documents = DocumentParser.parse_in_documents(targetfolder)
+              Rack::Blogengine.documents = DocumentParser.parse_in_documents(target)
 
               run Application
             end
