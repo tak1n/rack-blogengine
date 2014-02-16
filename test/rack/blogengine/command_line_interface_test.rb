@@ -55,8 +55,14 @@ class CommandLineInterfaceTest < MiniTest::Unit::TestCase
 
   def test_run_not_folder_string_argument
     result = capture_stdout { @cli.send(:run, '/not_a_directory') }
-    assert_equal('not_a_directory is not a folder!', result, 'run method should output "Target is not a folder!" when folderstring is not a directory')
+    assert_equal('/not_a_directory is not a folder!', result, 'run method should output "Target is not a folder!" when folderstring is not a directory')
   end
+
+  # def test_run
+    # capture_stdout { @cli.send(:generate, testpath) }
+    # result = capture_stdout { @cli.send(:run, testpath) }
+    # puts result
+  # end
 
   def test_get_config
     capture_stdout { @cli.send(:generate, testpath) }
