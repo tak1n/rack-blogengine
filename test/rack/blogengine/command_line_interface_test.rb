@@ -58,6 +58,18 @@ class CommandLineInterfaceTest < MiniTest::Unit::TestCase
   	assert_equal('not_a_directory is not a folder!', result, 'run method should output "Target is not a folder!" when folderstring is not pointing to a directory')
   end
 
+  def test_get_config
+  	capture_stdout { @cli.send(:generate, testpath) }
+  	config = @cli.send(:get_config, testpath)
+
+  	assert_equal(3000, config["Port"], "Default Port should be 3000")
+  	assert_equal("webrick", config["Server"], "Default Server should be webrick")
+  	assert_equal("", config["Username"], "Default Username should not be set")
+  	assert_equal("", config["Password"], "Default Password should not be set")
+  	assert_equal("no", config["Usage"], "Default HTTP Auth Usage should be no")
+
+  	system("rm -rf #{testpath}")
+  end
   # test_run is handled via cucumber feature test
   #def test_run
   	#capture_stdout { @cli.send(:generate, testpath) }
