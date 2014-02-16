@@ -61,7 +61,7 @@ module Rack
 
             Rack::Server.start(app: app, Port: config['Port'], server: config['Server'])
           else
-            print 'Target is not a folder!'
+            print "#{target} is not a folder!"
           end
         end
       end
