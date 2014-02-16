@@ -6,9 +6,6 @@ require 'test_helper.rb'
 # @author [benny]
 #
 class DocumentTest < MiniTest::Unit::TestCase
-  # parallelize_me!() # Run Tests parallel
-  # Nice comment: In doing so, you’re admitting that you rule and your tests are awesome.
-
   def setup
     @document = Rack::Blogengine::Document.new
 
@@ -40,11 +37,11 @@ class DocumentTest < MiniTest::Unit::TestCase
     capture_stdout { cli.generate(testpath) }
 
     document = Rack::Blogengine::Document.new
-    document.html = "{% test_operator %}"
-    
+    document.html = '{% test_operator %}'
+
     document.exec_content_operator(document, testpath)
-    
-    assert_equal("test", document.html, 'Documents html should contain test_operators return value')
+
+    assert_equal('test', document.html, 'Documents html should contain test_operators return value')
 
     system("rm -rf #{testpath}")
   end

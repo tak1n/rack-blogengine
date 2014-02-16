@@ -95,7 +95,7 @@ module Rack
         content['/content'] = '/close'
         content['/date'] = '/close'
 
-        contentarray = content.split('[/close]')
+        content.split('[/close]')
       end
 
       # Replace layout placeholder with content from .content file

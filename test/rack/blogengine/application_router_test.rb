@@ -6,8 +6,6 @@ require 'test_helper.rb'
 # @author [benny]
 #
 class ApplicationRouterTest < MiniTest::Unit::TestCase
-  #parallelize_me!
-  
   def setup
     # fake document
     documents = [{ html: '<!DOCTYPE html><body><h2>This is the Index Page</h2></body></html>',

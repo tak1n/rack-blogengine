@@ -51,4 +51,3 @@ def capture_stdout(&block)
   end
   fake.string
 end
-
