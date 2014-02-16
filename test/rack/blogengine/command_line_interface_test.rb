@@ -55,7 +55,7 @@ class CommandLineInterfaceTest < MiniTest::Unit::TestCase
 
   def test_run_not_folder_string_argument
   	result = capture_stdout { @cli.send(:run, "/not_a_directory") }
-  	assert_equal('Target is not a folder!', result, 'run method should output "Target is not a folder!" when folderstring is not pointing to a directory')
+  	assert_equal('not_a_directory is not a folder!', result, 'run method should output "Target is not a folder!" when folderstring is not pointing to a directory')
   end
 
   # test_run is handled via cucumber feature test
