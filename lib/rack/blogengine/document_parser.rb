@@ -68,22 +68,34 @@ module Rack
 
           if contentblock.include? '[title]:'
             contentblock['[title]:'] = ''
-            @title = contentblock.strip
+            if contentblock.empty?
+              raise "Title in #{file} is empty"
+            else
+              @title = contentblock.strip
+            end
           end
 
           if contentblock.include? '[content]:'
             contentblock['[content]:'] = ''
-            @content = contentblock.strip
+            if contentblock.empty?
+              raise "Content in #{file} is empty"
+            else
+              @content = contentblock.strip
+            end
           end
 
           if contentblock.include? '[date]:'
             contentblock['[date]:'] = ''
-            datearray = contentblock.split(',')
-            datearray = datearray.map do |date|
-              date.to_i
-            end
+            if /\d/.match( contentblock )
+              datearray = contentblock.split(',')
+              datearray = datearray.map do |date|
+                date.to_i
+              end
 
-            @date = Date.new(datearray[0], datearray[1], datearray[2])
+              @date = Date.new(datearray[0], datearray[1], datearray[2])
+            else
+              raise "Invalid Date in #{file}\n [date]:#{contentblock}[/date]"
+            end
           end
         end
       end

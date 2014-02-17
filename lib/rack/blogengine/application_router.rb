@@ -28,9 +28,14 @@ module Rack
             end
           end
 
-          { 'path' => '/error',
+          # if no document matches -> return error page
+          return errorpage(env, documents)
+        end
+
+        def errorpage(env, documents)
+          { 'path' => env['PATH_INFO'],
             'response' =>
-            [404, { 'Content-Type' => 'text/html; charset=UTF-8' }, ['Page not found && no error page found']]
+            [404, { 'Content-Type' => 'text/html; charset=UTF-8' }, ['Page not found']]
           }
         end
       end
