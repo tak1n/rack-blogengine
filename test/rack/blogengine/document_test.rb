@@ -39,7 +39,7 @@ class DocumentTest < MiniTest::Unit::TestCase
     document = Rack::Blogengine::Document.new
     document.html = '{% test_operator %}'
 
-    document.exec_content_operator(document, 'testfolder')
+    document.exec_content_operator(document, "#{testpath}")
 
     assert_equal('test', document.html, 'Documents html should contain test_operators return value')
 
