@@ -10,7 +10,7 @@ module Rack
     #
     module DocumentParser
       class << self
-        attr_accessor :title, :content, :date
+        attr_accessor :title, :content, :date, :target
       end
 
       # Parse in .content Documents.
@@ -68,7 +68,7 @@ module Rack
 
           if contentblock.include? '[title]:'
             contentblock['[title]:'] = ''
-            if contentblock.empty?
+            if contentblock.strip.empty?
               raise "Title in #{file} is empty"
             else
               @title = contentblock.strip
@@ -77,7 +77,7 @@ module Rack
 
           if contentblock.include? '[content]:'
             contentblock['[content]:'] = ''
-            if contentblock.empty?
+            if contentblock.strip.empty?
               raise "Content in #{file} is empty"
             else
               @content = contentblock.strip

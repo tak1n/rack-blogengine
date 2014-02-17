@@ -9,14 +9,15 @@ class DocumentParserTest < MiniTest::Unit::TestCase
   # parallelize_me!
 
   def setup
-    cli = Rack::Blogengine::CommandLineInterface.new
-    capture_stdout { cli.generate(testpath) }
-
-    @documents = Rack::Blogengine::DocumentParser.parse_in_documents(testpath)
   end
 
   # Test DocumentParser.parse_in_documents(path)
   def test_parse_in_documents
+    cli = Rack::Blogengine::CommandLineInterface.new
+    capture_stdout { cli.generate(testpath) }
+
+    @documents = Rack::Blogengine::DocumentParser.parse_in_documents(testpath)
+
     @documents.each do |document|
       # Check Hash keys
       assert(document.key?(:html), 'Documents should contain a path')
@@ -26,6 +27,9 @@ class DocumentParserTest < MiniTest::Unit::TestCase
 
   # Test DocumentParser.fill_file_contents(layout, title, content, date)
   def test_fill_file_contents
+    cli = Rack::Blogengine::CommandLineInterface.new
+    capture_stdout { cli.generate(testpath) }
+    
     layout_file = ::File.open("#{testpath}/assets/layout/layout.html", 'r')
     layout = layout_file.read
     title = 'testtitle'
@@ -50,6 +54,21 @@ class DocumentParserTest < MiniTest::Unit::TestCase
     assert_equal('INDEX', Rack::Blogengine::DocumentParser.title, 'Parsed in Title should eql Title in test .content file')
     assert_equal('<h2>This is the Index Page</h2>', Rack::Blogengine::DocumentParser.content, 'Parsed in Content should eql Content in test .content file')
     assert_instance_of(Date, Rack::Blogengine::DocumentParser.date, 'Parsed in Date should be of Class Date')
+  end
+
+  def test_get_file_contents_invalid_date
+    Rack::Blogengine::DocumentParser.target = "#{Rack::Blogengine.root}/assets"
+    assert_raises(RuntimeError) { Rack::Blogengine::DocumentParser.get_file_contents('date_error.content') }
+  end
+
+  def test_get_file_contents_invalid_content
+    Rack::Blogengine::DocumentParser.target = "#{Rack::Blogengine.root}/assets"
+    assert_raises(RuntimeError) { Rack::Blogengine::DocumentParser.get_file_contents('content_error.content') }
+  end
+
+  def test_get_file_contents_invalid_title
+    Rack::Blogengine::DocumentParser.target = "#{Rack::Blogengine.root}/assets"
+    assert_raises(RuntimeError) { Rack::Blogengine::DocumentParser.get_file_contents('title_error.content') }
   end
 
   # Test DocumentParser.get_content_array(contentstring)
