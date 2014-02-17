@@ -29,7 +29,7 @@ class DocumentParserTest < MiniTest::Unit::TestCase
   def test_fill_file_contents
     cli = Rack::Blogengine::CommandLineInterface.new
     capture_stdout { cli.generate(testpath) }
-    
+
     layout_file = ::File.open("#{testpath}/assets/layout/layout.html", 'r')
     layout = layout_file.read
     title = 'testtitle'
@@ -49,6 +49,7 @@ class DocumentParserTest < MiniTest::Unit::TestCase
     Rack::Blogengine::DocumentParser.content = ''
     Rack::Blogengine::DocumentParser.date = ''
 
+    Rack::Blogengine::DocumentParser.target = "#{Rack::Blogengine.root}/assets"
     Rack::Blogengine::DocumentParser.get_file_contents('index.content')
 
     assert_equal('INDEX', Rack::Blogengine::DocumentParser.title, 'Parsed in Title should eql Title in test .content file')
