@@ -14,3 +14,5 @@ matrix:
     - rvm: rbx
     - rvm: jruby
     - rvm: ruby-head
+
+script:  "env COVERAGE=true bundle exec rake"
