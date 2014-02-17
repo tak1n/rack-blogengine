@@ -1,5 +1,20 @@
+require 'simplecov'
 require 'coveralls'
-Coveralls.wear!
+
+SimpleCov.formatter = SimpleCov::Formatter::MultiFormatter[
+  SimpleCov::Formatter::HTMLFormatter,
+  Coveralls::SimpleCov::Formatter
+]
+
+SimpleCov.start do
+  project_name 'concurrent-ruby'
+  add_filter '/test/'
+  add_filter '/pkg/'
+  add_filter '/spec/'
+  add_filter '/features/'
+  add_filter '/doc/'
+  add_filter '/assets/'
+end
 
 require 'capybara/cucumber'
 require 'rack/blogengine'
