@@ -30,7 +30,7 @@ SimpleCov.formatter = SimpleCov::Formatter::MultiFormatter[
 ]
 
 SimpleCov.start do
-  project_name 'concurrent-ruby'
+  project_name 'rack-blogengine'
   add_filter '/test/'
   add_filter '/pkg/'
   add_filter '/spec/'
