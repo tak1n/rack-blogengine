@@ -5,13 +5,13 @@ require 'cucumber/rake/task'
 
 namespace :test do
   Rake::TestTask.new(:unit) do |t|
-    t.libs << "test"
+    t.libs << "lib" << "bin" << "ext"
     t.test_files = FileList['test/**/*_test.rb']
     t.verbose = true
   end
 
   Rake::TestTask.new(:spec) do |t|
-    t.libs << "spec"
+    t.libs << "lib" << "bin" << "ext"
     t.test_files = FileList['spec/**/*_spec.rb']
     t.verbose = true
   end
