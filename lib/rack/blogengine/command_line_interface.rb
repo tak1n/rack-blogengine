@@ -20,7 +20,7 @@ module Rack
 
       # Method to run the rack Application
       # @param [String] target
-      def run(target)
+      def run(target, environment="prod")
         if target.empty?
           print 'Specify a targetfolder!'
         else
@@ -52,7 +52,11 @@ module Rack
               run Application
             end
 
-            Rack::Server.start(app: app, Port: config['Port'], server: config['Server'])
+            if environment != "test"
+              Rack::Server.start(app: app, Port: config['Port'], server: config['Server'])
+            else
+              return app
+            end
           else
             print "#{target} is not a folder!"
           end
