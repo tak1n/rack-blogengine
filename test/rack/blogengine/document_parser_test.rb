@@ -9,13 +9,13 @@ class DocumentParserTest < MiniTest::Unit::TestCase
   # parallelize_me!
 
   def setup
+    cli = Rack::Blogengine::CommandLineInterface.new
+    capture_stdout { cli.generate(testpath) }
+    cli.send(:get_config, testpath)
   end
 
   # Test DocumentParser.parse_in_documents(path)
   def test_parse_in_documents
-    cli = Rack::Blogengine::CommandLineInterface.new
-    capture_stdout { cli.generate(testpath) }
-
     @documents = Rack::Blogengine::DocumentParser.parse_in_documents(testpath)
 
     @documents.each do |document|
@@ -27,9 +27,6 @@ class DocumentParserTest < MiniTest::Unit::TestCase
 
   # Test DocumentParser.fill_file_contents(layout, title, content, date)
   def test_fill_file_contents
-    cli = Rack::Blogengine::CommandLineInterface.new
-    capture_stdout { cli.generate(testpath) }
-
     layout_file = ::File.open("#{testpath}/assets/layout/layout.html", 'r')
     layout = layout_file.read
     title = 'testtitle'
@@ -40,6 +37,20 @@ class DocumentParserTest < MiniTest::Unit::TestCase
 
     assert(html.include?(title), 'Parsed and filled in HTML should contain Title')
     assert(html.include?(content), 'Parsed and filled in HTML should contain Content')
+    assert(html.include?(date.strftime('%d.%m.%Y')), 'Parsed and filled in HTML should contain Date')
+  end
+
+  def test_fill_file_contents_with_pygments
+    layout_file = ::File.open("#{testpath}/assets/layout/layout.html", 'r')
+    layout = layout_file.read
+    title = 'testtitle'
+    content = '<pre class="brush:ruby">def TestMethod</pre>'
+    date = Date.new
+
+    html = Rack::Blogengine::DocumentParser.fill_file_contents(layout, title, content, date)
+    
+    assert(html.include?(title), 'Parsed and filled in HTML should contain Title')
+    assert(html.include?("highlight"), 'Parsed and filled in HTML with pygment handling should contain .highlight class')
     assert(html.include?(date.strftime('%d.%m.%Y')), 'Parsed and filled in HTML should contain Date')
   end
 
@@ -104,6 +115,38 @@ class DocumentParserTest < MiniTest::Unit::TestCase
     documents = Rack::Blogengine::DocumentParser.sort(documents)
 
     assert_equal(Date.new(2012, 12, 12), documents[0].date, 'Documents should be sorted by date (earlier first)')
+  end
+
+  def test_highlight
+    content = "def TestMethod"
+    
+    highlighted = Rack::Blogengine::DocumentParser.highlight(content, 'ruby', testpath)
+    assert_match(/.highlight/, highlighted, "Highlighted html should contain a element with class highlight")
+  end
+
+  def test_highlight_fail
+    content = "def TestMethod"
+    
+    highlighted = Rack::Blogengine::DocumentParser.highlight(content, nil, testpath)
+    assert_equal(content, highlighted, "If Language is not defined Content should be returned unmodified")
+  end
+
+  def test_generate_highlight_css
+    Rack::Blogengine::DocumentParser.generate_highlight_css(testpath)
+    # css = Pygments.css(Rack::Blogengine.config["pygments_style"])
+    highlightcss = ::File.read("#{testpath}/assets/style/highlight.css")
+    # assert_equal(css, highlightcss, "Highlight Css file should be automatically filled in")
+    refute_empty(highlightcss, "Highlight Css file should be automatically filled in")
+  end
+
+  def test_get_highlight_code
+    content = "<html><head><title>Test</title></head><body><pre class='brush:ruby'>def TestMethod</pre></body></html>"
+
+    seperator = Rack::Blogengine.config["pygments_seperator"]
+
+    highlight_code = Rack::Blogengine::DocumentParser.get_highlight_code(content, seperator)
+    assert_equal('def TestMethod', highlight_code[:text], "Code between #{seperator} should be returned")
+    assert_equal('ruby', highlight_code[:brush], "Brush should be recognised by the class attribute")
   end
 
   def teardown

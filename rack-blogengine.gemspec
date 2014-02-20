@@ -26,4 +26,5 @@ Gem::Specification.new do |spec|
 
   spec.add_runtime_dependency "rack"
   spec.add_runtime_dependency "pygments.rb"
+  spec.add_runtime_dependency "nokogiri"
 end

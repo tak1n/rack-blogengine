@@ -39,7 +39,8 @@ module Rack
           documents << @document
         end
 
-        sort documents
+        generate_highlight_css(@target)
+        sort(documents)
 
         # Has to exec operator after all docs were read,
         # so documents are available for operators (list all docs, etc...)
@@ -110,6 +111,34 @@ module Rack
         content.split('[/close]')
       end
 
+      def self.get_highlight_code(content, seperator)
+        html = ::Nokogiri::HTML(content)
+        klass = html.css(seperator).attr('class')
+        brush = klass.to_s.split(':')[1]
+
+        highlight_code = { text: html.css(seperator).text, brush: brush }
+      end
+
+      def self.highlight(code, language, target)
+        if language     
+          Pygments.highlight(code, :lexer => language.to_sym)
+        else
+          code
+        end
+      end
+
+      def self.generate_highlight_css(target)
+        cli = Rack::Blogengine::CommandLineInterface.new
+        system("rm #{target}/assets/style/highlight.css") if ::File.exist?("#{target}/assets/style/highlight.css")
+
+        cli.send(:setup, "highlight.css", "#{target}/assets/style", false)
+
+        path = "#{target}/assets/style"
+
+        css = Pygments.css(:style => Rack::Blogengine.config["pygments_style"])
+        ::File.open("#{path}/highlight.css", 'w') { |file| file.write(css) }
+      end
+
       # Replace layout placeholder with content from .content file
       # @param [String] layout
       # @param [String] title
@@ -122,6 +151,18 @@ module Rack
         html.gsub! '{title}', title
         html['{content}'] = content
         html.gsub! '{date}', date.strftime('%d.%m.%Y')
+
+        html = Nokogiri::HTML(html)
+        seperator = Rack::Blogengine.config["pygments_seperator"]
+
+        html.css(seperator).map do |html|
+          highlight_code = get_highlight_code(html.to_s, seperator)
+          highlighted = highlight(highlight_code[:text], highlight_code[:brush], @target)
+
+          html.replace(highlighted)
+        end
+
+        return html.to_s
       end
 
       # Sort documents array by date of each documenthash

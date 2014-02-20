@@ -7,7 +7,7 @@ module Rack
   #
   module Blogengine
     class << self
-      attr_accessor :documents
+      attr_accessor :documents, :config
 
       def root
         ::File.dirname(::File.dirname(::File.expand_path('../..', __FILE__)))

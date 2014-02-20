@@ -10,6 +10,7 @@ require 'rack/blogengine/methods'
 # require third party libaries
 require 'pathname'
 require 'pygments'
+require 'nokogiri'
 
 module Rack
   #

@@ -134,8 +134,10 @@ module Rack
         username = config_yaml['HTTPauth']['username'].to_s.strip
         password = config_yaml['HTTPauth']['password'].to_s.strip
         usage = config_yaml['HTTPauth']['usage']
+        pygments_style = config_yaml['Pygments']['style']
+        pygments_seperator = config_yaml['Pygments']['seperator']
 
-        { 'Port' => port, 'Server' => server, 'Username' => username, 'Password' => password, 'Usage' => usage }
+        Rack::Blogengine.config = { 'Port' => port, 'Server' => server, 'Username' => username, 'Password' => password, 'Usage' => usage, 'pygments_style' => pygments_style, 'pygments_seperator' => pygments_seperator}
       end
     end
   end
