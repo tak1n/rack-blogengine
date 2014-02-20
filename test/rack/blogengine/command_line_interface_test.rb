@@ -58,6 +58,21 @@ class CommandLineInterfaceTest < MiniTest::Unit::TestCase
     assert_equal('/not_a_directory is not a folder!', result, 'run method should output "Target is not a folder!" when folderstring is not a directory')
   end
 
+  # def test_run
+    # capture_stdout { @cli.send(:generate, testpath) }
+
+    # server_thread = Thread.new do
+      # capture_stdout { @cli.send(:run, testpath) }
+    # end
+
+    # sleep(2) # wait a sec for the server to be booted
+
+    # Thread.list.each {|t| t.exit }
+    # Thread.list.each {|t| p t }
+
+    # system("rm -rf #{testpath}")
+  # end
+
   def test_build_rack_app
     capture_stdout { @cli.send(:generate, testpath) }
 
