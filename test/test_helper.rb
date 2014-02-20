@@ -20,8 +20,8 @@ end if ENV["COVERAGE"]
 
 # Minitest
 require 'minitest/autorun'
-# require 'minitest/pride' # for colored output
-# require 'test_notifier/runner/minitest' # for a notifier
+require 'minitest/mock'
+require 'minitest/pride' # for colored output
 
 # TestUnit -> MiniTest (TestUnit is only compatibility Layer)
 # require 'test/unit'

@@ -58,9 +58,11 @@ class CommandLineInterfaceTest < MiniTest::Unit::TestCase
     assert_equal('/not_a_directory is not a folder!', result, 'run method should output "Target is not a folder!" when folderstring is not a directory')
   end
 
-  def test_run
+  def test_build_rack_app
     capture_stdout { @cli.send(:generate, testpath) }
-    app = @cli.send(:run, testpath, "test")
+
+    config = @cli.send(:get_config, testpath)
+    app = @cli.send(:build_rack_app, testpath, config)
 
     assert_instance_of(Rack::Builder, app, "App should be of class Rack::Builder")
 
