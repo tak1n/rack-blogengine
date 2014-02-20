@@ -7,6 +7,9 @@ require 'rack/blogengine/command_line_interface'
 require 'rack/blogengine/operator'
 require 'rack/blogengine/methods'
 
+# require third party libaries
+require 'pathname'
+
 module Rack
   #
   # BlogEngine Module used for namespacing

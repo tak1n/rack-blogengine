@@ -25,12 +25,10 @@ module Rack
           print 'Specify a targetfolder!'
         else
           if Dir.exists?("#{target}")
-            system("cd #{target}")
-            
             config = get_config(target)
             app = build_rack_app(target, config)
 
-            Rack::Server.start(app: app, Port: config['Port'], server: config['Server'], daemonize: true, pid: "#{target}/.pid")
+            Rack::Server.start(app: app, Port: config['Port'], server: config['Server'])
           else
             print "#{target} is not a folder!"
           end
