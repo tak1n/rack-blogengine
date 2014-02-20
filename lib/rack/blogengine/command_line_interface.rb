@@ -20,46 +20,52 @@ module Rack
 
       # Method to run the rack Application
       # @param [String] target
-      def run(target, environment="prod")
+      def run(target)
         if target.empty?
           print 'Specify a targetfolder!'
         else
           if Dir.exists?("#{target}")
             system("cd #{target}")
+            
             config = get_config(target)
+            app = build_rack_app(target, config)
 
-            app = Rack::Builder.new do
-              map '/assets' do
-                run Rack::Directory.new("#{target}/assets")
-              end
-
-              use Rack::CommonLogger
-              use Rack::ShowExceptions
-              use Rack::Lint
-
-              if config['Usage'] == 'yes'
-                use Rack::Auth::Basic, 'Protected Area' do |username, password|
-                  username == config['Username'] && password == config['Password']
-                end
-              end
-
-              # Parse in all Documents in cli.run(target)
-              # -> $documents are parsed in only once and then cached via a global variable
-              # Todo Cache without global variable?
-              # Global Variable replaced with module instance variable
-              Rack::Blogengine.documents = DocumentParser.parse_in_documents(target)
-
-              run Application
-            end
-
-            if environment != "test"
-              Rack::Server.start(app: app, Port: config['Port'], server: config['Server'])
-            else
-              return app
-            end
+            Rack::Server.start(app: app, Port: config['Port'], server: config['Server'], daemonize: true, pid: "#{target}/.pid")
           else
             print "#{target} is not a folder!"
           end
+        end
+      end
+
+      # 
+      # Build rack app via Rack::Builder
+      # @param  target String The Targetfolder where all relevant files are located
+      # @param  config [type] Config via get_config -> parses in config.yml
+      # 
+      # @return [type] [description]
+      def build_rack_app(target, config)
+        app = Rack::Builder.new do
+          map '/assets' do
+            run Rack::Directory.new("#{target}/assets")
+          end
+
+          use Rack::CommonLogger
+          use Rack::ShowExceptions
+          use Rack::Lint
+
+          if config['Usage'] == 'yes'
+            use Rack::Auth::Basic, 'Protected Area' do |username, password|
+              username == config['Username'] && password == config['Password']
+            end
+          end
+
+          # Parse in all Documents in cli.run(target)
+          # -> $documents are parsed in only once and then cached via a global variable
+          # Todo Cache without global variable?
+          # Global Variable replaced with module instance variable
+          Rack::Blogengine.documents = DocumentParser.parse_in_documents(target)
+
+          run Application
         end
       end
 
