@@ -47,9 +47,9 @@ module Rack
             run Rack::Directory.new("#{target}/assets")
           end
 
-          use Rack::CommonLogger
-          use Rack::ShowExceptions
-          use Rack::Lint
+          # use Rack::CommonLogger
+          # use Rack::ShowExceptions
+          # use Rack::Lint
 
           if config['Usage'] == 'yes'
             use Rack::Auth::Basic, 'Protected Area' do |username, password|

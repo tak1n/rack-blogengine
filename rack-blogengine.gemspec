@@ -25,5 +25,5 @@ Gem::Specification.new do |spec|
   spec.add_development_dependency "coveralls"
 
   spec.add_runtime_dependency "rack"
-  spec.add_runtime_dependency "rack-pygments"
+  spec.add_runtime_dependency "pygments.rb"
 end
