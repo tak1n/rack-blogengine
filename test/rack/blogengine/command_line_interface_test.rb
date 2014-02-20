@@ -62,9 +62,14 @@ class CommandLineInterfaceTest < MiniTest::Unit::TestCase
     capture_stdout { @cli.send(:generate, testpath) }
 
     config = @cli.send(:get_config, testpath)
+    config['Usage'] = 'yes'
+    config["Username"] = 'testUser'
+    config['Password'] = 'test'
+
     app = @cli.send(:build_rack_app, testpath, config)
 
-    assert_instance_of(Rack::Builder, app, "App should be of class Rack::Builder")
+    assert_instance_of(Rack::Builder, app, 'App should be of class Rack::Builder')
+    # @todo : add better tests
 
     system("rm -rf #{testpath}")
   end
