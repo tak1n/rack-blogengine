@@ -22,6 +22,8 @@ Gem::Specification.new do |spec|
   spec.add_development_dependency "rake"
   spec.add_development_dependency "cucumber"
   spec.add_development_dependency "capybara"
+  spec.add_development_dependency "coveralls"
 
   spec.add_runtime_dependency "rack"
+  spec.add_runtime_dependency "rack-pygments"
 end
