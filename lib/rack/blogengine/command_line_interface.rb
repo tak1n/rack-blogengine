@@ -11,7 +11,7 @@ module Rack
     class CommandLineInterface
       def method_missing(name, *args)
         puts "Command #{name} not available"
-        print 'Available Commands are: \n\n'
+        print "Available Commands are: \n\n"
         self.class.instance_methods(false).each do |method|
           print "\t #{method}\n" unless method == :method_missing # || method == :setup || method == :getConfig
         end
@@ -32,38 +32,6 @@ module Rack
           else
             print "#{target} is not a folder!"
           end
-        end
-      end
-
-      # 
-      # Build rack app via Rack::Builder
-      # @param  target String The Targetfolder where all relevant files are located
-      # @param  config [type] Config via get_config -> parses in config.yml
-      # 
-      # @return [type] [description]
-      def build_rack_app(target, config)
-        app = Rack::Builder.new do
-          map '/assets' do
-            run Rack::Directory.new("#{target}/assets")
-          end
-
-          # use Rack::CommonLogger
-          # use Rack::ShowExceptions
-          # use Rack::Lint
-
-          if config['Usage'] == 'yes'
-            use Rack::Auth::Basic, 'Protected Area' do |username, password|
-              username == config['Username'] && password == config['Password']
-            end
-          end
-
-          # Parse in all Documents in cli.run(target)
-          # -> $documents are parsed in only once and then cached via a global variable
-          # Todo Cache without global variable?
-          # Global Variable replaced with module instance variable
-          Rack::Blogengine.documents = DocumentParser.parse_in_documents(target)
-
-          run Application
         end
       end
 
@@ -105,11 +73,43 @@ module Rack
 
       # Display Version
       # return [String] VERSION
-      def version?
+      def version
         puts "\n\tVERSION: #{Rack::Blogengine::VERSION}\n\tRack::Blogengine releases are all pre-relases, first production release will be VERSION 1.0.0\n\n"
       end
 
       private
+
+      # 
+      # Build rack app via Rack::Builder
+      # @param  target String The Targetfolder where all relevant files are located
+      # @param  config [type] Config via get_config -> parses in config.yml
+      # 
+      # @return [type] [description]
+      def build_rack_app(target, config)
+        app = Rack::Builder.new do
+          map '/assets' do
+            run Rack::Directory.new("#{target}/assets")
+          end
+
+          # use Rack::CommonLogger
+          # use Rack::ShowExceptions
+          # use Rack::Lint
+
+          if config['Usage'] == 'yes'
+            use Rack::Auth::Basic, 'Protected Area' do |username, password|
+              username == config['Username'] && password == config['Password']
+            end
+          end
+
+          # Parse in all Documents in cli.run(target)
+          # -> $documents are parsed in only once and then cached via a global variable
+          # Todo Cache without global variable?
+          # Global Variable replaced with module instance variable
+          Rack::Blogengine.documents = DocumentParser.parse_in_documents(target)
+
+          run Application
+        end
+      end
 
       # Helper method for generate to set up all essential files
       # param [String] name
