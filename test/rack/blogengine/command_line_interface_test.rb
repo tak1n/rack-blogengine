@@ -14,7 +14,7 @@ class CommandLineInterfaceTest < MiniTest::Unit::TestCase
     assert(@cli.respond_to?(:method_missing), 'CLI should respond to :method_missing method')
     assert(@cli.respond_to?(:run), 'CLI should respond to :run method')
     assert(@cli.respond_to?(:generate), 'CLI should respond to :generate method')
-    assert(@cli.respond_to?(:version?), 'CLI should respond to :version? method')
+    assert(@cli.respond_to?(:version), 'CLI should respond to :version? method')
   end
 
   def test_methods_missing
@@ -23,7 +23,7 @@ class CommandLineInterfaceTest < MiniTest::Unit::TestCase
   end
 
   def test_version?
-    result = capture_stdout { @cli.send(:version?) }
+    result = capture_stdout { @cli.send(:version) }
     assert(result.include?('VERSION'), ':version? should output the current VERSION')
   end
 
