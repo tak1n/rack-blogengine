@@ -10,7 +10,7 @@ module Rack
     #
     module DocumentParser
       class << self
-        attr_accessor :title, :content, :date, :target
+        attr_accessor :path, :title, :content, :date, :target, :html, :layout
       end
 
       # Parse in .content Documents.
@@ -20,32 +20,32 @@ module Rack
         @target = target
         documents = []
 
-        layout_file = ::File.open("#{@target}/assets/layout/layout.html", 'r')
-        @layout = layout_file.read
+        layout_file = ::File.open("#{target}/assets/layout/layout.html", 'r')
+        layout = layout_file.read
 
         Dir.foreach("#{target}/") do |item|
           extension = item.split('.')[1]
           next if item == '.' || item == '..' || extension != 'content'
 
           get_file_contents(item)
-          @html = fill_file_contents(@layout, @title, @content, @date)
+          html = fill_file_contents(layout, title, content, date)
 
           @document = Document.new
-          @document.path = @path
-          @document.html = @html
-          @document.title = @title
-          @document.date = @date
+          @document.path = path
+          @document.html = html
+          @document.title = title
+          @document.date = date
 
           documents << @document
         end
 
-        generate_highlight_css(@target)
+        generate_highlight_css(target)
         sort(documents)
 
         # Has to exec operator after all docs were read,
         # so documents are available for operators (list all docs, etc...)
         documents.each do |document|
-          document.exec_content_operator(documents, @target)
+          document.exec_content_operator(documents, target)
         end
 
         documents.map do |document|
@@ -56,7 +56,7 @@ module Rack
       # Get File Contents (path, title, content)
       # @param [String] file
       def self.get_file_contents(file)
-        content_file = ::File.open("#{@target}/#{file}")
+        content_file = ::File.open("#{target}/#{file}")
         content = content_file.read
 
         contentarray = get_content_array(content)
@@ -154,7 +154,7 @@ module Rack
 
         html.css(seperator).map do |html|
           highlight_code = get_highlight_code(html.to_s, seperator)
-          highlighted = highlight(highlight_code[:text], highlight_code[:brush], @target)
+          highlighted = highlight(highlight_code[:text], highlight_code[:brush], target)
 
           html.replace(highlighted)
         end
