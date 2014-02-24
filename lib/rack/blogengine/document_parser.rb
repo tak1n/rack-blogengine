@@ -70,7 +70,7 @@ module Rack
           if contentblock.include? '[title]:'
             contentblock['[title]:'] = ''
             if contentblock.strip.empty?
-              raise "Title in #{file} is empty"
+              fail "Title in #{file} is empty"
             else
               @title = contentblock.strip
             end
@@ -79,7 +79,7 @@ module Rack
           if contentblock.include? '[content]:'
             contentblock['[content]:'] = ''
             if contentblock.strip.empty?
-              raise "Content in #{file} is empty"
+              fail "Content in #{file} is empty"
             else
               @content = contentblock.strip
             end
@@ -95,7 +95,7 @@ module Rack
 
               @date = Date.new(datearray[0], datearray[1], datearray[2])
             else
-              raise "Invalid Date in #{file}\n [date]:#{contentblock}[/date]"
+              fail "Invalid Date in #{file}\n [date]:#{contentblock}[/date]"
             end
           end
         end
