@@ -6,15 +6,12 @@ require 'test_helper'
 # @author [benny]
 #
 class DocumentParserTest < MiniTest::Unit::TestCase
-  # parallelize_me!
-
   def setup
     cli = Rack::Blogengine::CommandLineInterface.new
     capture_stdout { cli.generate(testpath) }
     cli.send(:get_config, testpath)
   end
 
-  # Test DocumentParser.parse_in_documents(path)
   def test_parse_in_documents
     @documents = Rack::Blogengine::DocumentParser.parse_in_documents(testpath)
 
@@ -25,14 +22,12 @@ class DocumentParserTest < MiniTest::Unit::TestCase
     end
   end
 
-  # Test DocumentParser.fill_file_contents(layout, title, content, date)
   def test_fill_file_contents
     layout_file = ::File.open("#{testpath}/assets/layout/layout.html", 'r')
     layout = layout_file.read
     title = 'testtitle'
     content = 'testcontent'
     date = Date.new
-
     html = Rack::Blogengine::DocumentParser.fill_file_contents(layout, title, content, date)
 
     assert(html.include?(title), 'Parsed and filled in HTML should contain Title')
@@ -48,13 +43,11 @@ class DocumentParserTest < MiniTest::Unit::TestCase
     date = Date.new
 
     html = Rack::Blogengine::DocumentParser.fill_file_contents(layout, title, content, date)
-    
     assert(html.include?(title), 'Parsed and filled in HTML should contain Title')
-    assert(html.include?("highlight"), 'Parsed and filled in HTML with pygment handling should contain .highlight class')
+    assert(html.include?('highlight'), 'Parsed and filled in HTML with pygment handling should contain .highlight class')
     assert(html.include?(date.strftime('%d.%m.%Y')), 'Parsed and filled in HTML should contain Date')
   end
 
-  # Test DocumentParser.get_file_contents('file.content')
   def test_get_file_contents
     Rack::Blogengine::DocumentParser.title = ''
     Rack::Blogengine::DocumentParser.content = ''
@@ -83,8 +76,6 @@ class DocumentParserTest < MiniTest::Unit::TestCase
     assert_raises(RuntimeError) { Rack::Blogengine::DocumentParser.get_file_contents('title_error.content') }
   end
 
-  # Test DocumentParser.get_content_array(contentstring)
-  # Should split up the content for each content section (Path, Title, Date, Content)
   def test_get_content_array
     content = '[path]:[/path]
                [title]:INDEX[/title]
@@ -101,16 +92,12 @@ class DocumentParserTest < MiniTest::Unit::TestCase
     assert(contentarray[3].include?('content'), 'Fourth Entry should contain the content')
   end
 
-  # Test DocumentParser.sort(documents)
   def test_sort
     documents = []
-
     document1 = Rack::Blogengine::Document.new
     document1.date = Date.new(2013, 12, 12)
-
     document2 = Rack::Blogengine::Document.new
     document2.date = Date.new(2012, 12, 12)
-
     documents << document1 << document2
     documents = Rack::Blogengine::DocumentParser.sort(documents)
 
@@ -118,35 +105,32 @@ class DocumentParserTest < MiniTest::Unit::TestCase
   end
 
   def test_highlight
-    content = "def TestMethod"
-    
+    content = 'def TestMethod'
     highlighted = Rack::Blogengine::DocumentParser.highlight(content, 'ruby', testpath)
-    assert_match(/.highlight/, highlighted, "Highlighted html should contain a element with class highlight")
+    assert_match(/.highlight/, highlighted, 'Highlighted html should contain a element with class highlight')
   end
 
   def test_highlight_fail
-    content = "def TestMethod"
-    
+    content = 'def TestMethod'
     highlighted = Rack::Blogengine::DocumentParser.highlight(content, nil, testpath)
-    assert_equal(content, highlighted, "If Language is not defined Content should be returned unmodified")
+    assert_equal(content, highlighted, 'If Language is not defined Content should be returned unmodified')
   end
 
   def test_generate_highlight_css
     Rack::Blogengine::DocumentParser.generate_highlight_css(testpath)
-    # css = Pygments.css(Rack::Blogengine.config["pygments_style"])
+    # css = Pygments.css(Rack::Blogengine.config['pygments_style'])
     highlightcss = ::File.read("#{testpath}/assets/style/highlight.css")
-    # assert_equal(css, highlightcss, "Highlight Css file should be automatically filled in")
-    refute_empty(highlightcss, "Highlight Css file should be automatically filled in")
+    # assert_equal(css, highlightcss, 'Highlight Css file should be automatically filled in')
+    refute_empty(highlightcss, 'Highlight Css file should be automatically filled in')
   end
 
   def test_get_highlight_code
-    content = "<html><head><title>Test</title></head><body><pre class='brush:ruby'>def TestMethod</pre></body></html>"
-
-    seperator = Rack::Blogengine.config["pygments_seperator"]
-
+    content = '<html><head><title>Test</title></head><body><pre class="brush:ruby">def TestMethod</pre></body></html>'
+    seperator = Rack::Blogengine.config['pygments_seperator']
     highlight_code = Rack::Blogengine::DocumentParser.get_highlight_code(content, seperator)
+
     assert_equal('def TestMethod', highlight_code[:text], "Code between #{seperator} should be returned")
-    assert_equal('ruby', highlight_code[:brush], "Brush should be recognised by the class attribute")
+    assert_equal('ruby', highlight_code[:brush], 'Brush should be recognised by the class attribute')
   end
 
   def teardown

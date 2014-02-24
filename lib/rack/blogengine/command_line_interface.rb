@@ -79,14 +79,14 @@ module Rack
 
       private
 
-      # 
+      #
       # Build rack app via Rack::Builder
       # @param  target String The Targetfolder where all relevant files are located
       # @param  config [type] Config via get_config -> parses in config.yml
-      # 
+      #
       # @return [type] [description]
       def build_rack_app(target, config)
-        app = Rack::Builder.new do
+        Rack::Builder.new do
           map '/assets' do
             run Rack::Directory.new("#{target}/assets")
           end
@@ -137,7 +137,13 @@ module Rack
         pygments_style = config_yaml['Pygments']['style']
         pygments_seperator = config_yaml['Pygments']['seperator']
 
-        Rack::Blogengine.config = { 'Port' => port, 'Server' => server, 'Username' => username, 'Password' => password, 'Usage' => usage, 'pygments_style' => pygments_style, 'pygments_seperator' => pygments_seperator}
+        Rack::Blogengine.config = { 'Port' => port,
+                                    'Server' => server,
+                                    'Username' => username,
+                                    'Password' => password,
+                                    'Usage' => usage,
+                                    'pygments_style' => pygments_style,
+                                    'pygments_seperator' => pygments_seperator }
       end
     end
   end

@@ -6,8 +6,8 @@
 #
 class Operator
   def initialize(target)
-  	target = Pathname.new("#{target}").realpath.to_s
-    Dir["#{target}/operator/*.rb"].each {|file| require file }
+    target = Pathname.new("#{target}").realpath.to_s
+    Dir["#{target}/operator/*.rb"].each { |file| require file }
 
     extend UserOperator # load user operators
   end

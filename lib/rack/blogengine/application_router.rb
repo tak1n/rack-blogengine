@@ -29,7 +29,7 @@ module Rack
           end
 
           # if no document matches -> return error page
-          return errorpage(env, documents)
+          errorpage(env, documents)
         end
 
         def errorpage(env, documents)

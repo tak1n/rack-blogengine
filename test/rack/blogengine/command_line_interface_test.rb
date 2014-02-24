@@ -29,7 +29,6 @@ class CommandLineInterfaceTest < MiniTest::Unit::TestCase
 
   def test_generate
     capture_stdout { @cli.send(:generate, testpath) }
-
     assert(Dir.exist?(testpath), 'Test Directory should exist after generate method')
     assert(Dir.exist?("#{testpath}/assets"), 'assets Directory should exist after generate method')
     assert(Dir.exist?("#{testpath}/assets/layout"), 'assets/layout Directory should exist after generate method')
@@ -37,14 +36,12 @@ class CommandLineInterfaceTest < MiniTest::Unit::TestCase
     assert(Dir.exist?("#{testpath}/assets/js"), 'assets/js Directory should exist after generate method')
     assert(Dir.exist?("#{testpath}/assets/images"), 'assets/images Directory should exist after generate method')
     assert(Dir.exist?("#{testpath}/operator"), 'operator Directory should exist after generate method')
-
     assert(File.exist?("#{testpath}/operator/operator.rb"), 'operator.rb should exist after generate method')
     assert(File.exist?("#{testpath}/config.yml"), 'config.yml should exist after generate method')
     assert(File.exist?("#{testpath}/index.content"), 'index.content should exist after generate method')
     assert(File.exist?("#{testpath}/assets/layout/layout.html"), 'layout.html should exist after generate method')
     assert(File.exist?("#{testpath}/assets/style/style.css"), 'style.css should exist after generate method')
     assert(File.exist?("#{testpath}/assets/js/script.js"), 'script.js should exist after generate method')
-
     system("rm -rf #{testpath}")
   end
 
@@ -78,7 +75,7 @@ class CommandLineInterfaceTest < MiniTest::Unit::TestCase
 
     config = @cli.send(:get_config, testpath)
     config['Usage'] = 'yes'
-    config["Username"] = 'testUser'
+    config['Username'] = 'testUser'
     config['Password'] = 'test'
 
     app = @cli.send(:build_rack_app, testpath, config)

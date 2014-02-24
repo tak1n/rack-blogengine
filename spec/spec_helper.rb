@@ -37,7 +37,7 @@ SimpleCov.start do
   add_filter '/features/'
   add_filter '/doc/'
   add_filter '/assets/'
-end if ENV["COVERAGE"]
+end if ENV['COVERAGE']
 
 # Minitest
 require 'minitest/autorun'
