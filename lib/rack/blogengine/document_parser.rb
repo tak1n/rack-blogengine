@@ -84,7 +84,7 @@ module Rack
 
           elsif contentblock.include? '[date]:'
             contentblock['[date]:'] = ''
-            if /\d/.match(contentblock)
+            if /\d/.match( contentblock )
               datearray = contentblock.split(',')
               datearray = datearray.map do |date|
                 date.to_i
@@ -113,12 +113,12 @@ module Rack
         klass = html.css(seperator).attr('class')
         brush = klass.to_s.split(':')[1]
 
-        { text: html.css(seperator).text, brush: brush }
+        highlight_code = { text: html.css(seperator).text, brush: brush }
       end
 
       def self.highlight(code, language, target)
         if language
-          Pygments.highlight(code, lexer: language.to_sym)
+          Pygments.highlight(code, :lexer => language.to_sym)
         else
           code
         end
@@ -128,11 +128,11 @@ module Rack
         cli = Rack::Blogengine::CommandLineInterface.new
         system("rm #{target}/assets/style/highlight.css") if ::File.exist?("#{target}/assets/style/highlight.css")
 
-        cli.send(:setup, 'highlight.css', "#{target}/assets/style", false)
+        cli.send(:setup, "highlight.css", "#{target}/assets/style", false)
 
         path = "#{target}/assets/style"
 
-        css = Pygments.css(style: Rack::Blogengine.config['pygments_style'])
+        css = Pygments.css(:style => Rack::Blogengine.config["pygments_style"])
         ::File.open("#{path}/highlight.css", 'w') { |file| file.write(css) }
       end
 
@@ -150,16 +150,16 @@ module Rack
         html.gsub! '{date}', date.strftime('%d.%m.%Y')
 
         html = Nokogiri::HTML(html)
-        seperator = Rack::Blogengine.config['pygments_seperator']
+        seperator = Rack::Blogengine.config["pygments_seperator"]
 
-        html.css(seperator).map do |precontent|
-          highlight_code = get_highlight_code(precontent.to_s, seperator)
+        html.css(seperator).map do |html|
+          highlight_code = get_highlight_code(html.to_s, seperator)
           highlighted = highlight(highlight_code[:text], highlight_code[:brush], @target)
 
           html.replace(highlighted)
         end
 
-        html.to_s
+        return html.to_s
       end
 
       # Sort documents array by date of each documenthash
