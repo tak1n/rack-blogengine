@@ -38,6 +38,9 @@ module Rack
             [404, { 'Content-Type' => 'text/html; charset=UTF-8' }, ['Page not found']]
           }
         end
+      
+      private :errorpage
+
       end
     end
   end

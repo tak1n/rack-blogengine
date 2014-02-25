@@ -54,48 +54,4 @@ class CommandLineInterfaceTest < MiniTest::Unit::TestCase
     result = capture_stdout { @cli.send(:run, '/not_a_directory') }
     assert_equal('/not_a_directory is not a folder!', result, 'run method should output "Target is not a folder!" when folderstring is not a directory')
   end
-
-  # def test_run
-    # capture_stdout { @cli.send(:generate, testpath) }
-
-    # server_thread = Thread.new do
-      # capture_stdout { @cli.send(:run, testpath) }
-    # end
-
-    # sleep(2) # wait a sec for the server to be booted
-
-    # Thread.list.each {|t| t.exit }
-    # Thread.list.each {|t| p t }
-
-    # system("rm -rf #{testpath}")
-  # end
-
-  def test_build_rack_app
-    capture_stdout { @cli.send(:generate, testpath) }
-
-    config = @cli.send(:get_config, testpath)
-    config['Usage'] = 'yes'
-    config['Username'] = 'testUser'
-    config['Password'] = 'test'
-
-    app = @cli.send(:build_rack_app, testpath, config)
-
-    assert_instance_of(Rack::Builder, app, 'App should be of class Rack::Builder')
-    # @todo : add better tests
-
-    system("rm -rf #{testpath}")
-  end
-
-  def test_get_config
-    capture_stdout { @cli.send(:generate, testpath) }
-    config = @cli.send(:get_config, testpath)
-
-    assert_equal(3000, config['Port'], 'Default Port should be 3000')
-    assert_equal('webrick', config['Server'], 'Default Server should be webrick')
-    assert_equal('', config['Username'], 'Default Username should not be set')
-    assert_equal('', config['Password'], 'Default Password should not be set')
-    assert_equal('no', config['Usage'], 'Default HTTP Auth Usage should be no')
-
-    system("rm -rf #{testpath}")
-  end
 end

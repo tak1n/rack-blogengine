@@ -77,8 +77,6 @@ module Rack
         puts "\n\tVERSION: #{Rack::Blogengine::VERSION}\n\tRack::Blogengine releases are all pre-relases, first production release will be VERSION 1.0.0\n\n"
       end
 
-      private
-
       #
       # Build rack app via Rack::Builder
       # @param  target String The Targetfolder where all relevant files are located
@@ -90,10 +88,6 @@ module Rack
           map '/assets' do
             run Rack::Directory.new("#{target}/assets")
           end
-
-          # use Rack::CommonLogger
-          # use Rack::ShowExceptions
-          # use Rack::Lint
 
           if config['Usage'] == 'yes'
             use Rack::Auth::Basic, 'Protected Area' do |username, password|
@@ -145,6 +139,9 @@ module Rack
                                     'pygments_style' => pygments_style,
                                     'pygments_seperator' => pygments_seperator }
       end
+    
+    private :get_config, :setup, :build_rack_app
+
     end
   end
 end

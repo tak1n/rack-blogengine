@@ -10,7 +10,11 @@ module Rack
     #
     module DocumentParser
       class << self
-        attr_accessor :path, :title, :content, :date, :target, :html, :layout
+        private
+        attr_accessor :path, :title, :content, :date, :html, :layout
+        
+        public
+        attr_accessor :target
       end
 
       # Parse in .content Documents.
@@ -172,6 +176,10 @@ module Rack
         end
 
         documents
+      end
+
+      class << self
+        private :sort, :fill_file_contents, :generate_highlight_css, :highlight, :get_highlight_code, :get_content_array, :get_file_contents
       end
     end
   end
