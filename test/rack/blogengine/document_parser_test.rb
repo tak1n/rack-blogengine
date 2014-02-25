@@ -37,7 +37,11 @@ class DocumentParserTest < MiniTest::Unit::TestCase
   def test_documents_with_pygments
     skip
   end
-    
+
+  def test_documents_with_operator
+    skip
+  end
+
   def teardown
     system("rm -rf #{testpath}")
   end
