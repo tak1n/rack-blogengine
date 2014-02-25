@@ -12,9 +12,9 @@ Rack Middleware to serve a simple blog
 ## Supported Ruby Versions & Platforms
 
 - rbx   2.2.5
-- ruby  1.9.3
 - ruby  2.0.0
 - ruby  2.1.0
+- ruby  2.1.1
 - jruby 1.7.9
 
 ## Installation
