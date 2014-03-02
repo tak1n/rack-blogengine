@@ -101,7 +101,7 @@ module Rack
           # Global Variable replaced with module instance variable
           Rack::Blogengine.documents = DocumentParser.parse_in_documents(target)
 
-          run Application
+          run Application.new
         end
       end
 

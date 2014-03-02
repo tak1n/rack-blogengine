@@ -58,6 +58,10 @@ class CommandLineInterfaceTest < MiniTest::Unit::TestCase
   def test_build_rack_app
     capture_stdout { @cli.generate(testpath) }
     config = @cli.send(:get_config, testpath)
+    config['Usage'] = 'yes'
+    config['Username'] = 'Benny'
+    config['Password'] = 'Bensn'
+    
     app = @cli.send(:build_rack_app, testpath, config)
 
     assert_instance_of(Rack::Builder, app, 'Rack app should be instance of Rack::Builder')

@@ -1,0 +1,4 @@
+[path]:[/path]
+[title]:pygment[/title]
+[date]:2013,01,01[/date]
+[content]:<pre class="brush:ruby">def TestMethod</pre>[/content]

@@ -120,12 +120,12 @@ module Rack
         highlight_code = { text: html.css(seperator).text, brush: brush }
       end
 
-      def self.highlight(code, language, target)
-        if language
-          Pygments.highlight(code, :lexer => language.to_sym)
-        else
-          code
-        end
+      def self.highlight(code, language)
+        # if language
+        Pygments.highlight(code, :lexer => language.to_sym)
+        # else
+          # code
+        # end
       end
 
       def self.generate_highlight_css(target)
@@ -158,7 +158,7 @@ module Rack
 
         html.css(seperator).map do |html|
           highlight_code = get_highlight_code(html.to_s, seperator)
-          highlighted = highlight(highlight_code[:text], highlight_code[:brush], target)
+          highlighted = highlight(highlight_code[:text], highlight_code[:brush])
 
           html.replace(highlighted)
         end

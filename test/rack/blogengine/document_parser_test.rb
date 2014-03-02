@@ -7,9 +7,9 @@ require 'test_helper'
 #
 class DocumentParserTest < MiniTest::Unit::TestCase
   def setup
-    cli = Rack::Blogengine::CommandLineInterface.new
-    capture_stdout { cli.generate(testpath) }
-    cli.send(:get_config, testpath)
+    @cli = Rack::Blogengine::CommandLineInterface.new
+    capture_stdout { @cli.generate(testpath) }
+    @cli.send(:get_config, testpath)
   end
 
   def test_parse_in_documents
@@ -23,23 +23,45 @@ class DocumentParserTest < MiniTest::Unit::TestCase
   end
 
   def test_invalid_date
-    skip
+    system("rm #{testpath}/index.content")
+    capture_stdout { @cli.send(:setup, "date_error.content", "#{testpath}", true) }
+    assert_raises(RuntimeError) { documents = Rack::Blogengine::DocumentParser.parse_in_documents(testpath) }
   end
 
   def test_invalid_content
-    skip
+    system("rm #{testpath}/index.content")
+    capture_stdout { @cli.send(:setup, "content_error.content", "#{testpath}", true) }
+    assert_raises(RuntimeError) { documents = Rack::Blogengine::DocumentParser.parse_in_documents(testpath) }
   end
 
   def test_invalid_title
-    skip
+    system("rm #{testpath}/index.content")
+    capture_stdout { @cli.send(:setup, "title_error.content", "#{testpath}", true) }
+    assert_raises(RuntimeError) { documents = Rack::Blogengine::DocumentParser.parse_in_documents(testpath) }
   end
 
   def test_documents_with_pygments
-    skip
+    capture_stdout { @cli.send(:setup, "pygment.content", "#{testpath}", true) }
+    system("rm #{testpath}/index.content")
+    documents = Rack::Blogengine::DocumentParser.parse_in_documents(testpath)
+    documents.each do |document|
+      assert(document[:html].include?('class="highlight"'), 'Highlighted code should be wrapped in a div.highlight')
+    end
   end
 
   def test_documents_with_operator
-    skip
+    capture_stdout { @cli.send(:setup, "operator.content", "#{testpath}", true) }
+    system("rm #{testpath}/index.content")
+    documents = Rack::Blogengine::DocumentParser.parse_in_documents(testpath)
+    documents.each do |document|
+      assert(document[:html].include?('test'), 'Test Operator should return test')
+    end
+  end
+
+  def test_document_sort
+    capture_stdout { @cli.send(:setup, "date_test.content", "#{testpath}", true) }
+    documents = Rack::Blogengine::DocumentParser.parse_in_documents(testpath)
+    assert(documents[0][:html].include?('This is 2012'), 'The Document with lower date should be first')
   end
 
   def teardown

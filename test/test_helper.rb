@@ -23,6 +23,9 @@ require 'minitest/autorun'
 require 'minitest/mock'
 require 'minitest/pride' # for colored output
 
+# Rack Test Methods
+require 'rack/test'
+
 # TestUnit -> MiniTest (TestUnit is only compatibility Layer)
 # require 'test/unit'
 
