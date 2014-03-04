@@ -5,9 +5,9 @@ Rack Middleware to serve a simple blog
 ## Build status
 
 [![Build Status](https://travis-ci.org/Benny1992/rack-blogengine.png?branch=master)](https://travis-ci.org/Benny1992/rack-blogengine)
-[![Coverage Status](https://coveralls.io/repos/Benny1992/rack-blogengine/badge.png?branch=master)](https://coveralls.io/r/Benny1992/rack-blogengine?branch=master)
 [![Gem Version](https://badge.fury.io/rb/rack-blogengine.png)](http://badge.fury.io/rb/rack-blogengine)
 [![Dependency Status](https://gemnasium.com/Benny1992/rack-blogengine.png)](https://gemnasium.com/Benny1992/rack-blogengine)
+
 
 ## Supported Ruby Versions & Platforms
 
@@ -135,3 +135,4 @@ In your layout.html then
 3. Commit your changes (`git commit -am 'Add some feature'`)
 4. Push to the branch (`git push origin my-new-feature`)
 5. Create new Pull Request
+
