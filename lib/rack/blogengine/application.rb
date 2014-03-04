@@ -14,10 +14,12 @@ module Rack
       # @param env Environment contains information such as path, headers etc...
       # @return [Array] response Array
       def call(env)
+        request = Rack::Request.new(env)
+  
         # Router for map docs to routes
-        route = ApplicationRouter.map_route(env, Rack::Blogengine.documents)
+        route = ApplicationRouter.map_route(request, Rack::Blogengine.documents)
 
-        route['response']
+        route['response'].finish
       end
     end
   end
