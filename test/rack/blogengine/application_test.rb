@@ -7,31 +7,35 @@ require 'test_helper.rb'
 #
 class ApplicationTest < MiniTest::Unit::TestCase
   include Rack::Test::Methods
-
+  #
+  # MockClass for Testing
+  #
+  # @author  [benny]
+  #
   class MockApp
     def call(env = nil)
-      [200, {}, ["hello"]]
+      [200, {}, ['hello']]
     end
   end
 
   def app
-  	Rack::Blogengine::Application.new
+    Rack::Blogengine::Application.new
   end
 
   def setup
-  	@cli = Rack::Blogengine::CommandLineInterface.new
+    @cli = Rack::Blogengine::CommandLineInterface.new
     capture_stdout { @cli.generate(testpath) }
     Rack::Blogengine.config = @cli.send(:get_config, testpath)
     Rack::Blogengine.documents = Rack::Blogengine::DocumentParser.parse_in_documents(testpath)
   end
 
   def test_application_is_callable
-  	get '/'
+    get '/'
 
-  	assert(last_response.body.include?('This is the Index Page'))
+    assert(last_response.body.include?('This is the Index Page'))
   end
 
   def teardown
-  	system("rm -rf #{testpath}")
+    system("rm -rf #{testpath}")
   end
 end

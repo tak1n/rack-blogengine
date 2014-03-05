@@ -24,24 +24,24 @@ class DocumentParserTest < MiniTest::Unit::TestCase
 
   def test_invalid_date
     system("rm #{testpath}/index.content")
-    capture_stdout { @cli.send(:setup, "date_error.content", "#{testpath}", true) }
-    assert_raises(RuntimeError) { documents = Rack::Blogengine::DocumentParser.parse_in_documents(testpath) }
+    capture_stdout { @cli.send(:setup, 'date_error.content', "#{testpath}", true) }
+    assert_raises(RuntimeError) { Rack::Blogengine::DocumentParser.parse_in_documents(testpath) }
   end
 
   def test_invalid_content
     system("rm #{testpath}/index.content")
-    capture_stdout { @cli.send(:setup, "content_error.content", "#{testpath}", true) }
-    assert_raises(RuntimeError) { documents = Rack::Blogengine::DocumentParser.parse_in_documents(testpath) }
+    capture_stdout { @cli.send(:setup, 'content_error.content', "#{testpath}", true) }
+    assert_raises(RuntimeError) { Rack::Blogengine::DocumentParser.parse_in_documents(testpath) }
   end
 
   def test_invalid_title
     system("rm #{testpath}/index.content")
-    capture_stdout { @cli.send(:setup, "title_error.content", "#{testpath}", true) }
-    assert_raises(RuntimeError) { documents = Rack::Blogengine::DocumentParser.parse_in_documents(testpath) }
+    capture_stdout { @cli.send(:setup, 'title_error.content', "#{testpath}", true) }
+    assert_raises(RuntimeError) { Rack::Blogengine::DocumentParser.parse_in_documents(testpath) }
   end
 
   def test_documents_with_pygments
-    capture_stdout { @cli.send(:setup, "pygment.content", "#{testpath}", true) }
+    capture_stdout { @cli.send(:setup, 'pygment.content', "#{testpath}", true) }
     system("rm #{testpath}/index.content")
     documents = Rack::Blogengine::DocumentParser.parse_in_documents(testpath)
     documents.each do |document|
@@ -50,7 +50,7 @@ class DocumentParserTest < MiniTest::Unit::TestCase
   end
 
   def test_documents_with_operator
-    capture_stdout { @cli.send(:setup, "operator.content", "#{testpath}", true) }
+    capture_stdout { @cli.send(:setup, 'operator.content', "#{testpath}", true) }
     system("rm #{testpath}/index.content")
     documents = Rack::Blogengine::DocumentParser.parse_in_documents(testpath)
     documents.each do |document|
@@ -59,7 +59,7 @@ class DocumentParserTest < MiniTest::Unit::TestCase
   end
 
   def test_document_sort
-    capture_stdout { @cli.send(:setup, "date_test.content", "#{testpath}", true) }
+    capture_stdout { @cli.send(:setup, 'date_test.content', "#{testpath}", true) }
     documents = Rack::Blogengine::DocumentParser.parse_in_documents(testpath)
     assert(documents[0][:html].include?('This is 2012'), 'The Document with lower date should be first')
   end

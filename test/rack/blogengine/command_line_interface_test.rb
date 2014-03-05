@@ -61,11 +61,10 @@ class CommandLineInterfaceTest < MiniTest::Unit::TestCase
     config['Usage'] = 'yes'
     config['Username'] = 'Benny'
     config['Password'] = 'Bensn'
-    
+ 
     app = @cli.send(:build_rack_app, testpath, config)
 
     assert_instance_of(Rack::Builder, app, 'Rack app should be instance of Rack::Builder')
     system("rm -rf #{testpath}")
   end
-
 end

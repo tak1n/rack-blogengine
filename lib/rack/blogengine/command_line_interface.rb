@@ -139,9 +139,8 @@ module Rack
                                     'pygments_style' => pygments_style,
                                     'pygments_seperator' => pygments_seperator }
       end
-    
-    private :get_config, :setup, :build_rack_app
 
+      private :get_config, :setup, :build_rack_app
     end
   end
 end

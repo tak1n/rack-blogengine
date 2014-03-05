@@ -15,7 +15,7 @@ module Rack
       # @return [Array] response Array
       def call(env)
         request = Rack::Request.new(env)
-  
+
         # Router for map docs to routes
         route = ApplicationRouter.map_route(request, Rack::Blogengine.documents)
 

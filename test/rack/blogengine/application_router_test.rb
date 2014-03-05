@@ -13,7 +13,7 @@ class ApplicationRouterTest < MiniTest::Unit::TestCase
 
     env_fail = { 'PATH_INFO' => '/fail' }
     request_fail = Rack::Request.new(env_fail)
-    
+
     env_success = { 'PATH_INFO' => '/' }
     request_success = Rack::Request.new(env_success)
 

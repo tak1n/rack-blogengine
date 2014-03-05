@@ -39,9 +39,8 @@ module Rack
 
           { 'path' => request.path, 'response' => response }
         end
-      
-      private :errorpage
 
+        private :errorpage
       end
     end
   end
