@@ -1,5 +1,5 @@
 test_runs = if ENV['TESTS']
-              Interger(ENV['TESTS'])
+              Integer(ENV['TESTS'])
             else
               30
             end
