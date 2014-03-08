@@ -9,6 +9,8 @@ module Rack
     class Document
       attr_accessor :path, :html, :title, :date
 
+      # Converts Rack::Blogengine::Docuemnt to Hash
+      # @return [Hash] DocumentHashed [Document in Hash Presentation contains :path and :html]
       def to_hash
         hash = {}
         instance_variables.each do |var|
@@ -19,6 +21,11 @@ module Rack
         hash
       end
 
+      # Executes Content Operators and returns modified html
+      # @param [Array] documents [Array of Documents available in operators]
+      # @param [String] target [Target for executing Operator from Targetfolder]
+      #
+      # @return [String] @html [Sets @html to modified html from operator]
       def exec_content_operator(documents, target)
         @html.scan(/\{\%(.*?)\%\}/).each do |contentoperator|
           contentoperator = contentoperator[0].strip.to_sym

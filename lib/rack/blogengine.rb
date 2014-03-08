@@ -15,10 +15,17 @@ require 'nokogiri'
 module Rack
   #
   # BlogEngine Module used for namespacing
-  # Used in all /lib files
-  #
   # @author [benny]
   #
   module Blogengine
+    class << self
+      attr_accessor :documents, :config
+
+      # Method to return Gem Root Dir
+      # @return [String] Gem Root Folder
+      def root
+        ::File.dirname(::File.dirname(::File.expand_path('../..', __FILE__)))
+      end
+    end
   end
 end

@@ -7,12 +7,9 @@ module Rack
     # @author [benny]
     #
     class Application
-      # def initialize(app)
-        # @app = app
-      # end
       # Call Method for run this method as Rack Middleware.
-      # @param env Environment contains information such as path, headers etc...
-      # @return [Array] response Array
+      # @param [Hash] env [Environment contains information such as path, headers etc...]
+      # @return [Rack::Response] Rack Response
       def call(env)
         request = Rack::Request.new(env)
 

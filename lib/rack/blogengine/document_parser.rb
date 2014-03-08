@@ -18,7 +18,7 @@ module Rack
       end
 
       # Parse in .content Documents.
-      # @param target.
+      # @param [String] target
       # @return [Hash] Documents
       def self.parse_in_documents(target)
         @target = target
@@ -102,6 +102,9 @@ module Rack
         end
       end
 
+      # Get Content Array
+      # @param [String] content [The Content (.content file)]
+      # @return [Array] contentArray [Splitted Content File]
       def self.get_content_array(content)
         # Replace Closing tags
         content['/path'] = '/close'
@@ -112,6 +115,11 @@ module Rack
         content.split('[/close]')
       end
 
+      # Get Highlight Code from Content
+      # @param [String] content [HTML Content]
+      # @param [String] seperator [HTML between seperator will be highlighted]
+      #
+      # @return [Hash] :text - HTML to highlight, :brush - Brush via seperator class
       def self.get_highlight_code(content, seperator)
         html = ::Nokogiri::HTML(content)
         klass = html.css(seperator).attr('class')
@@ -121,14 +129,17 @@ module Rack
         { text: html.css(seperator).text, brush: brush }
       end
 
+      # Highlight Code in specific language
+      # @param [String] code [Code to highlight]
+      # @param [String] language [Language to highlight]
+      #
+      # @return [String] Highlighted HTML String
       def self.highlight(code, language)
-        # if language
         Pygments.highlight(code, lexer: language.to_sym)
-        # else
-          # code
-        # end
       end
 
+      # Populates highlight.css with specific highlight css
+      # @param [String] target [Targetfolder in which highlight.css lives]
       def self.generate_highlight_css(target)
         cli = Rack::Blogengine::CommandLineInterface.new
         system("rm #{target}/assets/style/highlight.css") if ::File.exist?("#{target}/assets/style/highlight.css")
@@ -146,7 +157,8 @@ module Rack
       # @param [String] title
       # @param [String] content
       # @param [Date]   date
-      # return [String] html placeholder replaced with content
+      #
+      # @return [String] html placeholder replaced with content
       def self.fill_file_contents(layout, title, content, date)
         html = layout.dup
 
@@ -169,7 +181,8 @@ module Rack
 
       # Sort documents array by date of each documenthash
       # @param [Array] documents
-      # return [Array] documents (sorted)
+      # @return [Array] documents (sorted)
+      #
       # Should it be sorted in Core or in the operator??
       def self.sort(documents)
         documents.sort! do | a, b |

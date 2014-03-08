@@ -6,11 +6,11 @@ module Rack
     # @author [benny]
     #
     module ApplicationRouter
-      # Maps documents to routes.
-      # @param env Env Contains path info etc...
-      # @param documents Documents which will be looked at
-      # @return [Hash] route Hash {:path => "/foo", :response => [Array]}
       class << self
+        # Maps documents to routes.
+        # @param [Rack::Request] request [Current Request Object]
+        # @param [Array] documents [parsed in Documents]
+        # @return [Hash] request [route Hash {'path' => [String], 'response' => [Rack::Response]}]
         def map_route(request, documents)
           header = { 'Content-Type' => 'text/html; charset=UTF-8' }
 
@@ -33,6 +33,9 @@ module Rack
           errorpage(request, documents)
         end
 
+        # Returns the errorpage
+        # @param [Rack::Request] request [current Request]
+        # @param [Array] documents [parsed in Documents]
         def errorpage(request, documents)
           header = { 'Content-Type' => 'text/html; charset=UTF-8' }
           response = Rack::Response.new('Page not found', 404, header)

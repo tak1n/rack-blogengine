@@ -9,6 +9,9 @@ module Rack
     # @author [benny]
     #
     class CommandLineInterface
+      # Handle unavailable methods
+      # @param [String] name [called Methodname]
+      # @param [Array] *args [Available args]
       def method_missing(name, *args)
         puts "Command #{name} not available"
         print "Available Commands are: \n\n"
@@ -72,17 +75,17 @@ module Rack
       end
 
       # Display Version
-      # return [String] VERSION
+      # @return [String] VERSION
       def version
         puts "\n\tVERSION: #{Rack::Blogengine::VERSION}\n\tRack::Blogengine releases are all pre-relases, first production release will be VERSION 1.0.0\n\n"
       end
 
       #
       # Build rack app via Rack::Builder
-      # @param  target String The Targetfolder where all relevant files are located
-      # @param  config [type] Config via get_config -> parses in config.yml
+      # @param [String] target [The Targetfolder where all relevant files are located]
+      # @param [Hash] config [Config via get_config -> parses in config.yml]
       #
-      # @return [type] [description]
+      # @return [Rack::Builder] Rack Application
       def build_rack_app(target, config)
         Rack::Builder.new do
           map '/assets' do
@@ -106,9 +109,9 @@ module Rack
       end
 
       # Helper method for generate to set up all essential files
-      # param [String] name
-      # param [String] path
-      # param [boolean] essential
+      # @param [String] name
+      # @param [String] path
+      # @param [boolean] essential
       def setup(name, path, essential)
         puts "\tSet up #{path}/#{name}\n"
         system("touch #{path}/#{name}")
@@ -120,6 +123,8 @@ module Rack
       end
 
       # Get YAML Config settings for Server.start && HTTPauth
+      # @param [String] target
+      # @return [Hash] Config
       def get_config(target)
         config_yaml = YAML.load(::File.open("#{target}/config.yml"))
 
