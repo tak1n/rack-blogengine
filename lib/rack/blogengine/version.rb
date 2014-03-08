@@ -7,6 +7,6 @@ module Rack
   #
   module Blogengine
     # Current Rack::Blogengine Version
-    VERSION = '0.2.7'.freeze
+    VERSION = '1.0.0'.freeze
   end
 end

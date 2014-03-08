@@ -5,7 +5,6 @@ require 'rack/blogengine/application'
 require 'rack/blogengine/application_router'
 require 'rack/blogengine/command_line_interface'
 require 'rack/blogengine/operator'
-require 'rack/blogengine/methods'
 
 # require third party libaries
 require 'pathname'
