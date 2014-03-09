@@ -17,7 +17,6 @@ Rack Middleware to serve a simple blog
 - ruby  2.0.0
 - ruby  2.1.0
 - ruby  2.1.1
-- jruby 1.7.9
 
 ## Installation
 
@@ -137,5 +136,6 @@ In your layout.html then
 3. Commit your changes (`git commit -am 'Add some feature'`)
 4. Push to the branch (`git push origin my-new-feature`)
 5. Create new Pull Request
+
 
 
