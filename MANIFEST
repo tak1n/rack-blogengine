@@ -4,9 +4,9 @@
 .yardopts
 Gemfile
 LICENSE.txt
+MANIFEST
 README.md
 Rakefile
-rack-blogengine.gemspec
 assets/config.yml
 assets/content_error.content
 assets/date_error.content
@@ -26,10 +26,12 @@ lib/rack/blogengine/document.rb
 lib/rack/blogengine/document_parser.rb
 lib/rack/blogengine/operator.rb
 lib/rack/blogengine/version.rb
-tasks/default.rake
-tasks/floodtest.rake
-tasks/test.rake
-tasks/travis.rake
+rack-blogengine.gemspec
+task/default.rake
+task/floodtest.rake
+task/manifest.rake
+task/test.rake
+task/travis.rake
 test/rack/blogengine/application_router_test.rb
 test/rack/blogengine/application_test.rb
 test/rack/blogengine/command_line_interface_test.rb
