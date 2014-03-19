@@ -7,7 +7,7 @@ require 'test_helper'
 #
 class DocumentParserTest < MiniTest::Unit::TestCase
   def setup
-    @cli = Rack::Blogengine::CommandLineInterface.new
+    @cli = Rack::Blogengine::CommandLineInterface
     capture_stdout { @cli.generate(testpath) }
     @cli.send(:get_config, testpath)
   end

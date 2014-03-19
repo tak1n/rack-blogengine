@@ -4,11 +4,12 @@ require 'yaml'
 module Rack
   module Blogengine
     #
-    # This Class handles all cli input (running the app, generate folder skeleton)
+    # This Module handles all cli input (running the app, generate folder skeleton)
     #
     # @author [benny]
     #
-    class CommandLineInterface
+    module CommandLineInterface
+      class << self
       # Handle unavailable methods
       # @param [String] name [called Methodname]
       # @param [Array] *args [Available args]
@@ -146,6 +147,7 @@ module Rack
       end
 
       private :get_config, :setup, :build_rack_app
+      end
     end
   end
 end

@@ -10,7 +10,7 @@ end
 target = ARGV[1]
 target = '' unless ARGV[1]
 
-cli = Rack::Blogengine::CommandLineInterface.new
+cli = Rack::Blogengine::CommandLineInterface
 
 if target != ''
   cli.send(command, target)

@@ -23,7 +23,7 @@ class ApplicationTest < MiniTest::Unit::TestCase
   end
 
   def setup
-    @cli = Rack::Blogengine::CommandLineInterface.new
+    @cli = Rack::Blogengine::CommandLineInterface
     capture_stdout { @cli.generate(testpath) }
     Rack::Blogengine.config = @cli.send(:get_config, testpath)
     Rack::Blogengine.documents = Rack::Blogengine::DocumentParser.parse_in_documents(testpath)

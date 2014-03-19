@@ -141,7 +141,7 @@ module Rack
       # Populates highlight.css with specific highlight css
       # @param [String] target [Targetfolder in which highlight.css lives]
       def self.generate_highlight_css(target)
-        cli = Rack::Blogengine::CommandLineInterface.new
+        cli = Rack::Blogengine::CommandLineInterface
         system("rm #{target}/assets/style/highlight.css") if ::File.exist?("#{target}/assets/style/highlight.css")
 
         cli.send(:setup, 'highlight.css', "#{target}/assets/style", false)
