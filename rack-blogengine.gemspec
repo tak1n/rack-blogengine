@@ -17,12 +17,14 @@ Gem::Specification.new do |spec|
   spec.executables   = spec.files.grep(%r{^bin/}) { |f| File.basename(f) }
   spec.require_paths = ["lib"]
 
-  spec.add_development_dependency "bundler", "~> 1.5"
-  spec.add_development_dependency "rake"
-  spec.add_development_dependency "coveralls"
-  spec.add_development_dependency "rack-test"
+  spec.required_ruby_version     = '>= 1.9.3'
 
-  spec.add_runtime_dependency "rack"
-  spec.add_runtime_dependency "pygments.rb"
-  spec.add_runtime_dependency "nokogiri"
+  spec.add_development_dependency "bundler", "~> 1.5"
+  spec.add_development_dependency "rake", '~> 10.2.2'
+  spec.add_development_dependency "coveralls", '~> 0.7.0'
+  spec.add_development_dependency "rack-test", '~> 0.6.2'
+
+  spec.add_runtime_dependency "rack", '~> 1.5.2'
+  spec.add_runtime_dependency "pygments.rb", '~> 0.5.4'
+  spec.add_runtime_dependency "nokogiri", '~> 1.6.1'
 end
