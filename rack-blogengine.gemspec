@@ -10,7 +10,7 @@ Gem::Specification.new do |spec|
   spec.email         = ["klotz.benjamin@yahoo.de"]
   spec.description   = %q{Blogengine based on rack applications}
   spec.summary       = "#{spec.description}"
-  spec.homepage      = "http://www.bennyklotz.at"
+  spec.homepage      = "https://github.com/Benny1992/rack-blogengine"
   spec.license       = "MIT"
 
   spec.files         = File.read(File.expand_path('../MANIFEST', __FILE__)).split("\n")
