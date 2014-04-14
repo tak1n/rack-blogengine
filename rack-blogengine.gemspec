@@ -23,6 +23,8 @@ Gem::Specification.new do |spec|
   spec.add_development_dependency "rake", '~> 10.2.2'
   spec.add_development_dependency "coveralls", '~> 0.7.0'
   spec.add_development_dependency "rack-test", '~> 0.6.2'
+  spec.add_development_dependency "guard"
+  spec.add_development_dependency 'guard-minitest'
 
   spec.add_runtime_dependency "rack", '~> 1.5.2'
   spec.add_runtime_dependency "pygments.rb", '~> 0.5.4'
