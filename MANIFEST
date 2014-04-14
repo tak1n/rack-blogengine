@@ -7,6 +7,7 @@ LICENSE.txt
 MANIFEST
 README.md
 Rakefile
+assets/Gemfile
 assets/config.yml
 assets/content_error.content
 assets/date_error.content
