@@ -71,6 +71,9 @@ module Rack
         # SET UP script.js
         setup('script.js', "#{folder}/assets/js", false)
 
+        # SET UP Gemfile
+        setup('Gemfile', "#{folder}", true)
+
         puts "\n\tSetup finished! Have Fun\n"
         puts "\tTo test it type rack-blogengine run #{folder}"
       end
