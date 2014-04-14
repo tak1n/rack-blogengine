@@ -11,6 +11,7 @@ Rack Middleware to serve a simple blog
 
 
 
+
 ## Supported Ruby Versions & Platforms
 
 - rbx   2.2.5
@@ -18,9 +19,11 @@ Rack Middleware to serve a simple blog
 - ruby  2.1.0
 - ruby  2.1.1
 
+
 ## Installation
 
     $ gem install rack-blogengine
+
 
 ## Usage
 
@@ -128,6 +131,9 @@ In your layout.html then
 </div>
 ```
 
+## TODO
+
+Implement pygments without nokogiri html parser (maybe use oga as alternative - <a href="https://github.com/YorickPeterse/oga">https://github.com/YorickPeterse/oga</a>)
 
 ## Contributing
 
@@ -136,6 +142,7 @@ In your layout.html then
 3. Commit your changes (`git commit -am 'Add some feature'`)
 4. Push to the branch (`git push origin my-new-feature`)
 5. Create new Pull Request
+
 
 
 
