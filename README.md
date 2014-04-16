@@ -22,10 +22,13 @@ Rack Middleware to serve a simple blog
 
 ## Installation
 
-This is a signed gem, so you have to add my public certificate.
+    $ gem install rack-blogengine
+
+To install the signed gem you have to add my public certificate and install with proper security level:
 
     $ gem cert –add <(curl -Ls https://raw.github.com/benny1992/rack-blogengine/master/certs/benny1992.pem)
-    $ gem install rack-blogengine
+    $ gem install rack-blogengine -P MediumSecurity
+
 
 ## Usage
 
@@ -144,6 +147,7 @@ Implement pygments without nokogiri html parser (maybe use oga as alternative - 
 3. Commit your changes (`git commit -am 'Add some feature'`)
 4. Push to the branch (`git push origin my-new-feature`)
 5. Create new Pull Request
+
 
 
 
