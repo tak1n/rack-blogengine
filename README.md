@@ -29,6 +29,11 @@ To install the signed gem you have to add my public certificate and install with
     $ gem cert –add <(curl -Ls https://raw.github.com/benny1992/rack-blogengine/master/certs/benny1992.pem)
     $ gem install rack-blogengine -P MediumSecurity
 
+### NOTE
+
+Installing signed Gems is currently not working (rubygem version 2.2.2)
+<a href="https://github.com/rubygems/rubygems/issues/859">Issue</a> will be fixed in version 2.3
+
 
 ## Usage
 
@@ -147,6 +152,7 @@ Implement pygments without nokogiri html parser (maybe use oga as alternative - 
 3. Commit your changes (`git commit -am 'Add some feature'`)
 4. Push to the branch (`git push origin my-new-feature`)
 5. Create new Pull Request
+
 
 
 
