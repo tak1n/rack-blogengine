@@ -3,6 +3,7 @@
 .travis.yml
 .yardopts
 Gemfile
+Guardfile
 LICENSE.txt
 MANIFEST
 README.md
@@ -19,6 +20,7 @@ assets/operator.rb
 assets/pygment.content
 assets/title_error.content
 bin/rack-blogengine
+certs/benny1992.pem
 lib/rack/blogengine.rb
 lib/rack/blogengine/application.rb
 lib/rack/blogengine/application_router.rb
