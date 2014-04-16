@@ -7,11 +7,14 @@ Gem::Specification.new do |spec|
   spec.name          = "rack-blogengine"
   spec.version       = Rack::Blogengine::VERSION
   spec.authors       = ["Benny1992"]
-  spec.email         = ["klotz.benjamin@yahoo.de"]
+  spec.email         = ["r3qnbenni@gmail.com"]
   spec.description   = %q{Blogengine based on rack applications}
   spec.summary       = "#{spec.description}"
   spec.homepage      = "https://github.com/Benny1992/rack-blogengine"
   spec.license       = "MIT"
+
+  spec.cert_chain  = ['certs/rack-blogengine.pem']
+  spec.signing_key = File.expand_path("~/.ssh/gem-private_key.pem") if $0 =~ /gem\z/
 
   spec.files         = File.read(File.expand_path('../MANIFEST', __FILE__)).split("\n")
   spec.executables   = spec.files.grep(%r{^bin/}) { |f| File.basename(f) }
