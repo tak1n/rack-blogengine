@@ -3,7 +3,6 @@
 .travis.yml
 .yardopts
 Gemfile
-Guardfile
 LICENSE.txt
 MANIFEST
 README.md
@@ -21,6 +20,7 @@ assets/pygment.content
 assets/title_error.content
 bin/rack-blogengine
 certs/benny1992.pem
+checksum/rack-blogengine-1.0.6.gem.sha512
 lib/rack/blogengine.rb
 lib/rack/blogengine/application.rb
 lib/rack/blogengine/application_router.rb
@@ -30,6 +30,8 @@ lib/rack/blogengine/document_parser.rb
 lib/rack/blogengine/operator.rb
 lib/rack/blogengine/version.rb
 rack-blogengine.gemspec
+task/build.rake
+task/checksum.rake
 task/default.rake
 task/floodtest.rake
 task/manifest.rake
