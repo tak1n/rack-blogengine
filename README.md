@@ -14,10 +14,10 @@ Rack Middleware to serve a simple blog
 
 ## Supported Ruby Versions & Platforms
 
-- rbx   2.2.5
-- ruby  2.0.0
-- ruby  2.1.0
-- ruby  2.1.1
+- rbx   2.2.*
+- ruby  2.*
+- ruby  1.9.*
+
 
 
 ## Installation
@@ -154,6 +154,7 @@ Implement pygments without nokogiri html parser (maybe use oga as alternative - 
 3. Commit your changes (`git commit -am 'Add some feature'`)
 4. Push to the branch (`git push origin my-new-feature`)
 5. Create new Pull Request
+
 
 
 
