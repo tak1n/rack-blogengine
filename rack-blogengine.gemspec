@@ -25,12 +25,12 @@ Gem::Specification.new do |spec|
 
   spec.required_ruby_version     = '>= 1.9.3'
 
-  spec.add_development_dependency "bundler", "~> 1.6.2"
-  spec.add_development_dependency "rake", '~> 10.3.1'
-  spec.add_development_dependency "coveralls", '~> 0.7.0'
-  spec.add_development_dependency "rack-test", '~> 0.6.2'
+  spec.add_development_dependency "bundler", "~> 1.6"
+  spec.add_development_dependency "rake", '~> 10.3'
+  spec.add_development_dependency "coveralls", '~> 0.7'
+  spec.add_development_dependency "rack-test", '~> 0.6'
 
-  spec.add_runtime_dependency "rack", '~> 1.5.2'
-  spec.add_runtime_dependency "pygments.rb", '~> 0.5.4'
-  spec.add_runtime_dependency "nokogiri", '~> 1.6.1'
+  spec.add_runtime_dependency "rack", '~> 1.5'
+  spec.add_runtime_dependency "pygments.rb", '~> 0.5'
+  spec.add_runtime_dependency "nokogiri", '~> 1.6'
 end
