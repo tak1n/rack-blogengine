@@ -19,7 +19,6 @@ assets/operator.rb
 assets/pygment.content
 assets/title_error.content
 bin/rack-blogengine
-certs/benny1992.pem
 checksum/rack-blogengine-1.0.6.gem.sha512
 lib/rack/blogengine.rb
 lib/rack/blogengine/application.rb
