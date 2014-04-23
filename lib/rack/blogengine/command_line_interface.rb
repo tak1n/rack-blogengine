@@ -16,7 +16,7 @@ module Rack
       def method_missing(name, *args)
         puts "Command #{name} not available"
         print "Available Commands are: \n\n"
-        self.methods(false).each do |method|
+        methods(false).each do |method|
           print "\t #{method}\n" unless method == :method_missing # || method == :setup || method == :getConfig
         end
         print "\n"
