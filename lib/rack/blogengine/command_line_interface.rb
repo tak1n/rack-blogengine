@@ -28,7 +28,7 @@ module Rack
         if target.empty?
           print 'Specify a targetfolder!'
         else
-          if Dir.exists?("#{target}")
+          if Dir.exist?("#{target}")
             config = get_config(target)
             app = build_rack_app(target, config)
 
