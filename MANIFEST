@@ -38,7 +38,6 @@ task/default.rake
 task/floodtest.rake
 task/manifest.rake
 task/test.rake
-task/travis.rake
 test/rack/blogengine/application_router_test.rb
 test/rack/blogengine/application_test.rb
 test/rack/blogengine/command_line_interface_test.rb
