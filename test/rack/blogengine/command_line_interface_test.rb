@@ -5,7 +5,7 @@ require 'test_helper.rb'
 #
 # @author [benny]
 #
-class CommandLineInterfaceTest < MiniTest::Unit::TestCase
+class CommandLineInterfaceTest < Minitest::Test
   def setup
     @cli = Rack::Blogengine::CommandLineInterface
   end
