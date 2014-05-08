@@ -1,4 +1,3 @@
-.yardopts
 LICENSE.txt
 MANIFEST
 README.md
@@ -24,6 +23,8 @@ assets/pygment.content
 assets/title_error.content
 assets/title_error.content
 bin/rack-blogengine
+checksum/rack-blogengine-1.0.6.gem.sha512
+checksum/rack-blogengine-1.0.7.gem.sha512
 doc/Operator.html
 doc/Rack.html
 doc/Rack/Blogengine.html
