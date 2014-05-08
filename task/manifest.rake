@@ -1,17 +1,17 @@
 desc 'Generates the MANIFEST file'
 task :manifest do
   FILE_LIST = FileList.new(
-    'checkum/**/*.*',
-    'doc/**/*.*',
-    'lib/**/*.*',
-    'bin/*',
+    'checksum/**/*.*',
     'assets/**/*.*',
     'assets/**/*',
+    'doc/**/*.*',
+    'lib/**/*.*',
+    'bin/*.*',
+    'bin/*',
     'LICENSE.txt',
     'MANIFEST',
     '*.gemspec',
-    'README.md',
-    '.yardopts'
+    'README.md'
   )
 
   files  = FILE_LIST.to_a.sort
