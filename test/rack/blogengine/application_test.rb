@@ -5,7 +5,7 @@ require 'test_helper.rb'
 #
 # @author [benny]
 #
-class ApplicationTest < Minitest::Unit::TestCase
+class ApplicationTest < Minitest::Test
   include Rack::Test::Methods
   #
   # MockClass for Testing
