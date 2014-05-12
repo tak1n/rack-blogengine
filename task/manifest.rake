@@ -4,7 +4,6 @@ task :manifest do
     'checksum/**/*.*',
     'assets/**/*.*',
     'assets/**/*',
-    'doc/**/*.*',
     'lib/**/*.*',
     'bin/*.*',
     'bin/*',
