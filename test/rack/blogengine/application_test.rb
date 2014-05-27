@@ -7,16 +7,6 @@ require 'test_helper.rb'
 #
 class ApplicationTest < Minitest::Test
   include Rack::Test::Methods
-  #
-  # MockClass for Testing
-  #
-  # @author  [benny]
-  #
-  class MockApp
-    def call(env = nil)
-      [200, {}, ['hello']]
-    end
-  end
 
   def app
     Rack::Blogengine::Application.new
