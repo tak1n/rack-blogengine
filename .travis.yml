@@ -21,7 +21,7 @@ matrix:
     - rvm: ruby-head
     - rvm: rbx
 
-script:  "env COVERAGE=true bundle exec rake"
+script:  "env COVERAGE=true bundle exec bin/test_runner"
 
 notifications:
   email:
