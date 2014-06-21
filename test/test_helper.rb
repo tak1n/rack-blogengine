@@ -19,6 +19,7 @@ end if ENV['COVERAGE']
 # Previous content of test helper now starts here
 
 # Minitest
+gem 'minitest'
 require 'minitest/autorun'
 require 'minitest/reporters'
 
