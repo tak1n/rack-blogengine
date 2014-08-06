@@ -1,6 +1,11 @@
 # Rack::Blogengine
 
-Rack Middleware to serve a simple blog
+Rack Application to serve a simple blog
+
+## NOTE
+
+This is just a project for learning purpose, but if you want to use it read further.
+Code should be considered bad (1st OSS ruby project).
 
 ## Build status
 
@@ -120,7 +125,7 @@ end
 Your operators are normal ruby methods defined in this module.
 Available params are documents & html
 
-Param documents: 
+Param documents:
 An Array with document objects.
 This Document objects has following attributes: path, title, html
 
@@ -139,7 +144,7 @@ end
 In your layout.html then
 
 ```html
-<div class="nav">	
+<div class="nav">
 	{% show_nav %}
 </div>
 ```
