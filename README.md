@@ -5,7 +5,7 @@ Rack Application to serve a simple blog
 ## NOTE
 
 This is just a project for learning purpose, but if you want to use it read further.
-Code should be considered bad (1st OSS ruby project).
+Code should be considered bad (1st ruby project).
 
 ## Build status
 
