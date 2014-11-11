@@ -53,26 +53,12 @@ module Rack
         system("mkdir #{folder}/operator")
 
         puts "\n\tSetting up essential Files\n"
-
-        # SET UP operator.rb
         setup('operator.rb', "#{folder}/operator", true)
-
-        # SET UP config.yml
         setup('config.yml', "#{folder}", true)
-
-        # SET UP index.content
         setup('index.content', "#{folder}", true)
-
-        # SET UP layout.html
         setup('layout.html', "#{folder}/assets/layout", true)
-
-        # SET UP style.css
         setup('style.css', "#{folder}/assets/style", false)
-
-        # SET UP script.js
         setup('script.js', "#{folder}/assets/js", false)
-
-        # SET UP Gemfile
         setup('Gemfile', "#{folder}", true)
 
         puts "\n\tSetup finished! Have Fun\n"
