@@ -13,7 +13,7 @@ target = '' unless ARGV[1]
 cli = Rack::Blogengine::CommandLineInterface
 
 if target != ''
-  cli.send(command, target)
+  cli.public_send(command, target)
 else
-  cli.send(command)
+  cli.public_send(command)
 end
