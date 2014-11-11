@@ -9,27 +9,28 @@ module Rack
     # @author [benny]
     #
     module CommandLineInterface
-      class << self
       # Handle unavailable methods
       # @param [String] name [called Methodname]
       # @param [Array] *args [Available args]
-      def method_missing(name, *args)
+      def self.method_missing(name, *args)
         puts "Command #{name} not available"
         print "Available Commands are: \n\n"
         methods(false).each do |method|
-          print "\t #{method}\n" unless method == :method_missing # || method == :setup || method == :getConfig
+          print "\t #{method}\n" unless method == :method_missing
         end
         print "\n"
       end
 
       # Method to run the rack Application
       # @param [String] target
-      def run(target)
+      def self.run(target)
         if target.empty?
           print 'Specify a targetfolder!'
         else
           if Dir.exist?("#{target}")
             config = get_config(target)
+            generate_highlight_css(target)
+
             app = build_rack_app(target, config)
 
             Rack::Server.start(app: app, Port: config['Port'], server: config['Server'])
@@ -41,7 +42,7 @@ module Rack
 
       # Command to generate the folder skeleton
       # @param [String] folder
-      def generate(folder)
+      def self.generate(folder)
         puts "\tGenerating folder skeleton\n"
         system("mkdir #{folder}")
         system("mkdir #{folder}/assets")
@@ -80,17 +81,32 @@ module Rack
 
       # Display Version
       # @return [String] VERSION
-      def version
+      def self.version
         puts "\n\tVERSION: #{Rack::Blogengine::VERSION}\n"
       end
 
-      #
+      private
+
+      # Populates highlight.css with specific highlight css
+      # @param [String] target [Targetfolder in which highlight.css lives]
+      def self.generate_highlight_css(target)
+        system("rm #{target}/assets/style/highlight.css") if ::File.exist?("#{target}/assets/style/highlight.css")
+
+        setup('highlight.css', "#{target}/assets/style", false)
+
+        path = "#{target}/assets/style"
+
+        css = Pygments.css(style: Rack::Blogengine.config['pygments_style'])
+
+        File.open("#{path}/highlight.css", 'w') { |file| file.write(css) }
+      end
+
       # Build rack app via Rack::Builder
       # @param [String] target [The Targetfolder where all relevant files are located]
       # @param [Hash] config [Config via get_config -> parses in config.yml]
       #
       # @return [Rack::Builder] Rack Application
-      def build_rack_app(target, config)
+      def self.build_rack_app(target, config)
         Rack::Builder.new do
           map '/assets' do
             run Rack::Directory.new("#{target}/assets")
@@ -102,10 +118,6 @@ module Rack
             end
           end
 
-          # Parse in all Documents in cli.run(target)
-          # -> $documents are parsed in only once and then cached via a global variable
-          # Todo Cache without global variable?
-          # Global Variable replaced with module instance variable
           Rack::Blogengine.documents = DocumentParser.parse_in_documents(target)
 
           run Application.new
@@ -116,7 +128,7 @@ module Rack
       # @param [String] name
       # @param [String] path
       # @param [boolean] essential
-      def setup(name, path, essential)
+      def self.setup(name, path, essential)
         puts "\tSet up #{path}/#{name}\n"
         system("touch #{path}/#{name}")
         if essential
@@ -129,7 +141,7 @@ module Rack
       # Get YAML Config settings for Server.start && HTTPauth
       # @param [String] target
       # @return [Hash] Config
-      def get_config(target)
+      def self.get_config(target)
         config_yaml = YAML.load(::File.open("#{target}/config.yml"))
 
         port = config_yaml['Port']
@@ -147,9 +159,6 @@ module Rack
                                     'Usage' => usage,
                                     'pygments_style' => pygments_style,
                                     'pygments_seperator' => pygments_seperator }
-      end
-
-      private :get_config, :setup, :build_rack_app
       end
     end
   end

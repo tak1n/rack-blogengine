@@ -43,7 +43,6 @@ module Rack
           documents << @document
         end
 
-        generate_highlight_css(target)
         sort(documents)
 
         # Has to exec operator after all docs were read,
@@ -138,20 +137,6 @@ module Rack
         Pygments.highlight(code, lexer: language.to_sym)
       end
 
-      # Populates highlight.css with specific highlight css
-      # @param [String] target [Targetfolder in which highlight.css lives]
-      def self.generate_highlight_css(target)
-        cli = Rack::Blogengine::CommandLineInterface
-        system("rm #{target}/assets/style/highlight.css") if ::File.exist?("#{target}/assets/style/highlight.css")
-
-        cli.send(:setup, 'highlight.css', "#{target}/assets/style", false)
-
-        path = "#{target}/assets/style"
-
-        css = Pygments.css(style: Rack::Blogengine.config['pygments_style'])
-        ::File.open("#{path}/highlight.css", 'w') { |file| file.write(css) }
-      end
-
       # Replace layout placeholder with content from .content file
       # @param [String] layout
       # @param [String] title
@@ -193,7 +178,7 @@ module Rack
       end
 
       class << self
-        private :sort, :fill_file_contents, :generate_highlight_css, :highlight, :get_highlight_code, :get_content_array, :get_file_contents
+        private :sort, :fill_file_contents, :highlight, :get_highlight_code, :get_content_array, :get_file_contents
       end
     end
   end
