@@ -9,14 +9,10 @@ Code should be considered bad (1st ruby project).
 
 ## Build status
 
-[![Build Status](https://travis-ci.org/Benny1992/rack-blogengine.png?branch=master)](https://travis-ci.org/Benny1992/rack-blogengine)
 [![Coverage Status](https://coveralls.io/repos/Benny1992/rack-blogengine/badge.png?branch=master)](https://coveralls.io/r/Benny1992/rack-blogengine?branch=master)
 [![Gem Version](https://badge.fury.io/rb/rack-blogengine.png)](http://badge.fury.io/rb/rack-blogengine)
 [![Dependency Status](https://gemnasium.com/Benny1992/rack-blogengine.png)](https://gemnasium.com/Benny1992/rack-blogengine)
 [![Codeship](https://www.codeship.io/projects/9d0a0f70-bc07-0131-eeee-0e1e5f0f6334/status)](https://www.codeship.io/projects/9d0a0f70-bc07-0131-eeee-0e1e5f0f6334/status)
-
-
-
 
 ## Supported Ruby Versions & Platforms
 
