@@ -16,37 +16,21 @@ SimpleCov.start do
   add_filter '/assets/'
 end if ENV['COVERAGE']
 
-# Previous content of test helper now starts here
-
-# Minitest
 gem 'minitest'
 require 'minitest/autorun'
 require 'minitest/reporters'
 
-reporter_options = { color: true, slow_count: 5 }
-Minitest::Reporters.use! [Minitest::Reporters::DefaultReporter.new(reporter_options)]
+Minitest::Reporters.use!(
+  Minitest::Reporters::SpecReporter.new,
+  ENV,
+  Minitest.backtrace_filter
+)
 
 # Rack Test Methods
 require 'rack/test'
 
-# TestUnit -> MiniTest (TestUnit is only compatibility Layer)
-# require 'test/unit'
-
 # Load Rack::Blogengine gem
 require 'rack/blogengine'
-
-# class Hash
-  # method for usage with assert_boolean
-  # -> for failing it needs nil instead of false (which #has_key? returns in failing case)
-  # NOT Needed use assert_true instead...
-  # def hash_key?(key)
-  #   if self.has_key?(key)
-  #	    return true
-  #	  else
-  #	    return nil
-  #	  end
-  # end
-# end
 
 #
 # Opening Kernel for testpath method
