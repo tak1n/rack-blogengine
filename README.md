@@ -6,6 +6,7 @@ Rack Application to serve a simple blog
 
 This is just a project for learning purpose, but if you want to use it read further.
 Code should be considered bad (1st ruby project).
+Also its not actively maintained.
 
 ## Build status
 
