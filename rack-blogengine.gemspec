@@ -6,18 +6,18 @@ require 'rack/blogengine/version'
 Gem::Specification.new do |spec|
   spec.name          = "rack-blogengine"
   spec.version       = Rack::Blogengine::VERSION
-  spec.authors       = ["Benny1992"]
-  spec.email         = ["r3qnbenni@gmail.com"]
+  spec.authors       = ["Benny Klotz"]
+  spec.email         = ["benny.klotz92@gmail.com"]
   spec.description   = %q{Blogengine based on rack applications}
   spec.summary       = "#{spec.description}"
-  spec.homepage      = "https://github.com/Benny1992/rack-blogengine"
+  spec.homepage      = "https://github.com/tak1n/rack-blogengine"
   spec.license       = "MIT"
 
   spec.post_install_message = 'Please report any issues at: ' \
-      'https://github.com/Benny1992/rack-blogengine/issues/new'
+      'https://github.com/tak1n/rack-blogengine/issues/new'
 
-  spec.cert_chain  = ['certs/benny1992.pem']
-  spec.signing_key = File.expand_path("~/.ssh/gem-private_key.pem") if $0 =~ /gem\z/
+  # spec.cert_chain  = ['certs/benny1992.pem']
+  # spec.signing_key = File.expand_path("~/.ssh/gem-private_key.pem") if $0 =~ /gem\z/
 
   spec.files         = File.read(File.expand_path('../MANIFEST', __FILE__)).split("\n")
   spec.executables   = spec.files.grep(%r{^bin/}) { |f| File.basename(f) }
