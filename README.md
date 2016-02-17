@@ -17,9 +17,8 @@ Also its not actively maintained.
 
 ## Supported Ruby Versions & Platforms
 
-- rbx   2.2.*
-- ruby  2.*
-- ruby  1.9.*
+- rbx  > 3.14
+- ruby > 2.2
 
 
 
