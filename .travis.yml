@@ -8,13 +8,13 @@ rvm:
   - 2.2.4
   - 2.3.0
   - ruby-head
-  - jruby
+  - jruby-9000
   - rbx-3
 
 matrix:
   allow_failures:
     - rvm: ruby-head
-    - rvm: jruby
+    - rvm: jruby-9000
     - rvm: rbx-3
 
 script:
