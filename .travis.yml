@@ -16,6 +16,7 @@ matrix:
   allow_failures:
     - rvm: ruby-head
     - rvm: jruby
+    - rvm: rbx-3
 
 script:
   - "COVERAGE=true bundle exec bin/test_runner"
