@@ -18,7 +18,11 @@ matrix:
     - rvm: rbx-3
 
 script:
-  - "COVERAGE=true bundle exec bin/test_runner"
+  - CODECLIMATE_REPO_TOKEN=35f688ab9034adbb1f1f705880cae769409ac19dff515205e69765714697fa7f bundle exec bin/test_runner
+
+addons:
+  code_climate:
+    repo_token: 35f688ab9034adbb1f1f705880cae769409ac19dff515205e69765714697fa7f
 
 notifications:
   email:

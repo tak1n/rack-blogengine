@@ -1,22 +1,6 @@
-require 'simplecov'
-require 'coveralls'
+require "codeclimate-test-reporter"
+CodeClimate::TestReporter.start
 
-SimpleCov.formatter = SimpleCov::Formatter::MultiFormatter[
-  SimpleCov::Formatter::HTMLFormatter,
-  Coveralls::SimpleCov::Formatter
-]
-
-SimpleCov.start do
-  project_name 'rack-blogengine'
-  add_filter '/test/'
-  add_filter '/pkg/'
-  add_filter '/spec/'
-  add_filter '/features/'
-  add_filter '/doc/'
-  add_filter '/assets/'
-end if ENV['COVERAGE']
-
-gem 'minitest'
 require 'minitest/autorun'
 require 'minitest/reporters'
 
