@@ -15,9 +15,9 @@ module Rack
       def self.method_missing(name, *args)
         puts "Command #{name} not available"
         print "Available Commands are: \n\n"
-        methods(false).each do |method|
-          print "\t #{method}\n" unless method == :method_missing
-        end
+
+        print "\t generate -- Generates a blog folder with a basic blog skeleton\n"
+        print "\t run -- Runs the given rack app\n"
         print "\n"
       end
 
@@ -35,7 +35,7 @@ module Rack
 
             Rack::Server.start(app: app, Port: config['Port'], server: config['Server'])
           else
-            print "#{target} is not a folder!"
+            print "#{target} is not a folder!\n"
           end
         end
       end
@@ -84,7 +84,7 @@ module Rack
 
         css = Pygments.css(style: Rack::Blogengine.config['pygments_style'])
 
-        File.open("#{path}/highlight.css", 'w') { |file| file.write(css) }
+        ::File.open("#{path}/highlight.css", 'w') { |file| file.write(css) }
       end
 
       # Build rack app via Rack::Builder
