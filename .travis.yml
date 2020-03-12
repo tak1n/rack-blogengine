@@ -5,26 +5,20 @@ before_install:
   - gem install bundler
 
 rvm:
-  - 2.2.0
-  - 2.2.1
-  - 2.2.2
-  - 2.2.3
-  - 2.2.4
-  - 2.3.0
-  - 2.3.1
-  - 2.3.2
+  - 2.5.7
+  - 2.6.5
+  - 2.7.0
   - ruby-head
-  - jruby-9000
-  - rbx-3
+  - jruby-9.2.11.0
 
 matrix:
   allow_failures:
     - rvm: ruby-head
-    - rvm: jruby-9000
-    - rvm: rbx-3
+    - rvm: jruby-9.2.11.0
+
 
 script:
-  - bundle exec bin/test_runner
+  - bundle exec rake test:unit
   - CODECLIMATE_REPO_TOKEN=35f688ab9034adbb1f1f705880cae769409ac19dff515205e69765714697fa7f bundle exec codeclimate-test-reporter
 
 addons:
